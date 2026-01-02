@@ -1,0 +1,19 @@
+[project]
+name = "xpublish-ogc-core"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Alex Kerney", email = "abk@mac.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "xpublish>=0.4.1"
+]
+
+[build-system]
+requires = ["uv_build>=0.8.15,<0.9.0"]
+build-backend = "uv_build"
+
+[project.entry-points."xpublish.plugin"]
+xpublish_ogc_core = "xpublish_ogc_core.plugin:OgcCorePlugin"
