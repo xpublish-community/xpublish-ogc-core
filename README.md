@@ -4,9 +4,62 @@ Enable Xpublish plugins that support various OGC methods to serve via fully OGC 
 
 _Currently it's a very alpha way to demo how we could do this. You have been warned._
 
-This works by creating an `app_router` that responds to more general OGC endpoints like `/collections`, `/collections/{collection_id}` with eventually compliant responses.
+This works by creating an `app_router` that restructures the Xpublish API around [OGC API - Common](https://ogcapi.ogc.org/common/) conventions, and registering new `hookspec`s that other OGC plugins (for example [xpublish-edr](https://github.com/xpublish-community/xpublish-edr)) implement to contribute their conformance classes, collection metadata, and data queries.
 
-It also registers new `hookspec`s that other plugins can implement.
+## Endpoints
 
-- `ogc_router` which allows adding to any OGC route (probably should add an `ogc_collections_router` to be more specific).
-- `ogc_collection_dataqueries` that allows each plugin to advertise their routes in a `/collections/{collection_id}` response.
+| Path | Description |
+| ---- | ----------- |
+| `/` | Landing page with `self`, `service-desc` (`/openapi.json`), `service-doc` (`/docs`), `conformance`, and `data` links (including the `http://www.opengis.net/def/rel/ogc/1.0/...` link relations) |
+| `/conformance` | OGC API - Common conformance classes, plus every class declared by plugins via the `ogc_conformance_classes` hook |
+| `/collections` | One collection per published dataset, built from dataset attributes plus plugin contributions |
+| `/collections/{collection_id}` | A single collection, with `data_queries` aggregated from the `ogc_collection_dataqueries` hook. Unknown ids return an OGC `exception` shaped 404 |
+
+If `xpublish-ogc-core` is installed it is loaded automatically through the `xpublish.plugin` entry point. The landing page title and description are configurable on the plugin, by instantiating it explicitly (note that passing `plugins` to `xpublish.Rest` disables entry point auto-loading, so list every plugin you want):
+
+```python
+import xpublish
+from xpublish_edr import CfEdrPlugin
+from xpublish_ogc_core import OgcCorePlugin
+
+rest = xpublish.Rest(
+    datasets,
+    plugins={
+        "ogc-core": OgcCorePlugin(title="My data server", description="..."),
+        "edr": CfEdrPlugin(),
+    },
+)
+```
+
+## Hookspecs
+
+Other OGC plugins implement these `hookspec`s (declared on `OgcPluginSpec`):
+
+- `ogc_router(deps)` — return an `APIRouter` mounted at the application root, for OGC routes like `/collections/{collection_id}/position`.
+- `ogc_conformance_classes()` — return a list of conformance class URIs (`http://www.opengis.net/spec/...`) to aggregate into `/conformance`.
+- `ogc_collection_metadata(collection_id, ds)` — return a dict of collection members (`extent`, `parameter_names`, `crs`, `output_formats`, ...) merged into the collection objects served at `/collections` and `/collections/{collection_id}`.
+- `ogc_collection_dataqueries(collection_id, ds)` — return a dict of [data query descriptions](https://docs.ogc.org/is/19-086r6/19-086r6.html#_df2c080b-949c-40c3-ad14-d20228270c2d) (`position`, `area`, `cube`, ...) merged into the collection's `data_queries`.
+
+## Schema-driven development
+
+Development is driven by the official OGC schemas instead of hand-approximated responses:
+
+- The bundled OpenAPI document published by the [OGC API - Environmental Data Retrieval standard](https://github.com/opengeospatial/ogcapi-environmental-data-retrieval) (which also bundles the OGC API - Common building blocks) is vendored under `src/xpublish_ogc_core/schemas/` so tests run offline. Refresh it with `python scripts/update_schemas.py`.
+- `xpublish_ogc_core.testing` is shipped with the package so downstream plugins can validate their own responses against the official component schemas:
+
+  ```python
+  from xpublish_ogc_core.testing import validate_response
+
+  validate_response("landingPage", client.get("/").json())
+  validate_response("collection", client.get("/collections/air").json())
+  ```
+
+  Validation failures raise with the jsonschema error messages, pointing at the exact spec violation.
+
+## Development
+
+Tests cover every endpoint against the vendored OGC schemas (using a stub OGC plugin to exercise the hook plumbing) and fuzz the API with [Schemathesis](https://schemathesis.readthedocs.io/) against the app's own OpenAPI description:
+
+```shell
+uv run pytest
+```
