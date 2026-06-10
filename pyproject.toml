@@ -1,14 +1,27 @@
 [project]
 name = "xpublish-ogc-core"
 version = "0.1.0"
-description = "Add your description here"
+description = "OGC API Common structure and support for OGC Xpublish plugins"
 readme = "README.md"
 authors = [
     { name = "Alex Kerney", email = "abk@mac.com" }
 ]
 requires-python = ">=3.11"
 dependencies = [
+    "pydantic>=2",
     "xpublish>=0.4.1"
+]
+
+[dependency-groups]
+dev = [
+    "cf-xarray",
+    "httpx",
+    "jsonschema",
+    "netcdf4",
+    "pooch",
+    "pytest",
+    "referencing",
+    "schemathesis>=4",
 ]
 
 [build-system]
