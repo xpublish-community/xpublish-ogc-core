@@ -16,7 +16,7 @@ from pathlib import Path
 SCHEMAS = {
     "ogcapi-environmental-data-retrieval-1-oas30.bundled.json": (
         "https://raw.githubusercontent.com/opengeospatial/"
-        "ogcapi-environmental-data-retrieval/master/"
+        "ogcapi-environmental-data-retrieval/3450dab3d76ba756f557bbf45afc0f6a244b0800/"
         "ogcapi-environmental-data-retrieval-1-oas30.bundled.json"
     ),
 }
