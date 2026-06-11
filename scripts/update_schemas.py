@@ -19,6 +19,10 @@ SCHEMAS = {
         "ogcapi-environmental-data-retrieval/3450dab3d76ba756f557bbf45afc0f6a244b0800/"
         "ogcapi-environmental-data-retrieval-1-oas30.bundled.json"
     ),
+    "ogcapi-tiles-1.bundled.json": (
+        "https://schemas.opengis.net/ogcapi/tiles/part1/1.0/openapi/"
+        "ogcapi-tiles-1.bundled.json"
+    ),
 }
 
 SCHEMA_DIR = Path(__file__).parent.parent / "src" / "xpublish_ogc_core" / "schemas"

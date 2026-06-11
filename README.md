@@ -44,14 +44,15 @@ Other OGC plugins implement these `hookspec`s (declared on `OgcPluginSpec`):
 
 Development is driven by the official OGC schemas instead of hand-approximated responses:
 
-- The bundled OpenAPI document published by the [OGC API - Environmental Data Retrieval standard](https://github.com/opengeospatial/ogcapi-environmental-data-retrieval) (which also bundles the OGC API - Common building blocks) is vendored under `src/xpublish_ogc_core/schemas/` so tests run offline. Refresh it with `python scripts/update_schemas.py`.
-- `xpublish_ogc_core.testing` is shipped with the package so downstream plugins can validate their own responses against the official component schemas:
+- The bundled OpenAPI documents published by the [OGC API - Environmental Data Retrieval](https://github.com/opengeospatial/ogcapi-environmental-data-retrieval) (which also bundles the OGC API - Common building blocks) and [OGC API - Tiles](https://github.com/opengeospatial/ogcapi-tiles) standards are vendored under `src/xpublish_ogc_core/schemas/` so tests run offline. Refresh them with `python scripts/update_schemas.py`.
+- `xpublish_ogc_core.testing` is shipped with the package so downstream plugins can validate their own responses against the official component schemas (the `document` argument picks the bundle, defaulting to `"edr"`):
 
   ```python
   from xpublish_ogc_core.testing import validate_response
 
   validate_response("landingPage", client.get("/").json())
   validate_response("collection", client.get("/collections/air").json())
+  validate_response("tileSet", client.get("/datasets/air/tiles/WebMercatorQuad").json(), document="tiles")
   ```
 
   Validation failures raise with the jsonschema error messages, pointing at the exact spec violation.
