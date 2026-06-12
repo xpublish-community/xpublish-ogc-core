@@ -36,7 +36,7 @@ jobs:
         run: uv sync --dev
 
       - name: Run tests with coverage
-        run: uv run pytest -rxs --cov=src/xpublish_ogc_core --cov-report=xml tests
+        run: uv run pytest -vrxs --cov=src/xpublish_ogc_core --cov-report=xml tests
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@75cd11691c0faa626561e295848008c8a7dddffe # v5

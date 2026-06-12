@@ -30,11 +30,14 @@ import socket
 import subprocess
 import threading
 import time
-from collections.abc import Iterator
+from collections.abc import Collection, Iterator
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
 from xml.etree import ElementTree
 
-import fastapi
+if TYPE_CHECKING:
+    import fastapi
+    import pytest
 
 # the host as seen from inside a container, provided by Docker Desktop and
 # mapped explicitly on Linux via --add-host below
@@ -163,21 +166,39 @@ def teamengine_container(
 
 
 @dataclass
-class FailedTest:
-    """A single failed CITE test, e.g. ``ApiDefinition.apiDefinitionValidation``."""
+class TestMethod:
+    """A single CITE test-method result, e.g. ``ApiDefinition.apiDefinitionValidation``."""
 
     name: str
-    message: str
+    status: str  # "PASS", "FAIL", or "SKIP"
+    message: str = ""
+
+
+# kept as an alias so existing imports of the failed-test type keep working
+FailedTest = TestMethod
 
 
 @dataclass
 class SuiteResult:
     """Outcome of a TeamEngine suite run, parsed from TestNG results XML."""  # codespell:ignore
 
-    passed: int = 0
-    failed: int = 0
-    skipped: int = 0
-    failures: list[FailedTest] = field(default_factory=list)
+    tests: list[TestMethod] = field(default_factory=list)
+
+    @property
+    def passed(self) -> int:
+        return sum(test.status == "PASS" for test in self.tests)
+
+    @property
+    def failed(self) -> int:
+        return sum(test.status == "FAIL" for test in self.tests)
+
+    @property
+    def skipped(self) -> int:
+        return sum(test.status == "SKIP" for test in self.tests)
+
+    @property
+    def failures(self) -> list[TestMethod]:
+        return [test for test in self.tests if test.status == "FAIL"]
 
     def failure_names(self) -> set[str]:
         return {failure.name for failure in self.failures}
@@ -199,27 +220,71 @@ def parse_testng_results(xml_text: str) -> SuiteResult:
         class_name = test_class.get("name", "").rsplit(".", 1)[-1]
 
         for test_method in test_class.findall("test-method"):
+            # configuration methods (setUp/tearDown) aren't real test results
             if test_method.get("is-config") == "true":
                 continue
 
-            status = test_method.get("status", "")
-            if status == "PASS":
-                result.passed += 1
-            elif status == "FAIL":
-                result.failed += 1
-
-                exception = test_method.find(".//exception/message")
-                message = exception.text.strip() if exception is not None and exception.text else ""
-                result.failures.append(
-                    FailedTest(
-                        name=f"{class_name}.{test_method.get('name', '')}",
-                        message=message,
-                    ),
-                )
-            elif status == "SKIP":
-                result.skipped += 1
+            exception = test_method.find(".//exception/message")
+            message = exception.text.strip() if exception is not None and exception.text else ""
+            result.tests.append(
+                TestMethod(
+                    name=f"{class_name}.{test_method.get('name', '')}",
+                    status=test_method.get("status", ""),
+                    message=message,
+                ),
+            )
 
     return result
+
+
+def report_subtests(
+    result: SuiteResult,
+    subtests: "pytest.Subtests",
+    *,
+    known_failures: Collection[str] = (),
+    expected_passed: int = 0,
+) -> None:
+    """Report a parsed suite result through pytest subtests.
+
+    Emits one subtest per CITE test method so each individual result shows up
+    in pytest's output: passes pass, skips are reported as skipped, and
+    failures fail the run — except those named in *known_failures*, which are
+    reported as expected failures (xfail). Two bookkeeping subtests then keep
+    the suite honest: one fails if a *known_failures* entry no longer fails
+    (so the list doesn't rot), and one asserts at least *expected_passed*
+    methods passed (so a suite that silently stops running is caught).
+
+    Designed to be driven from a downstream CITE test, mirroring how those
+    tests already declare a ``KNOWN_FAILURES`` set::
+
+        def test_edr_cite_suite(subtests):
+            result = teamengine.run_suite(...)
+            teamengine.report_subtests(
+                result,
+                subtests,
+                known_failures=KNOWN_FAILURES,
+                expected_passed=25,
+            )
+    """
+    import pytest
+
+    known_failures = set(known_failures)
+
+    for test in result.tests:
+        with subtests.test(msg=test.name, status=test.status):
+            if test.status == "SKIP":
+                pytest.skip(f"`{test.name}` skipped by the CITE suite")
+            elif test.status == "FAIL":
+                if test.name in known_failures:
+                    pytest.xfail(f"`{test.name}` known failure: {test.message or 'known failure'}")
+                pytest.fail(f"`{test.name}` failed: {test.message or 'CITE test failed'}")
+
+    with subtests.test(msg="known_failures still fail"):
+        fixed = sorted(known_failures - result.failure_names())
+        assert not fixed, f"known_failures now pass, remove them: {fixed}"
+
+    with subtests.test(msg=f"at least {expected_passed} tests passed"):
+        assert result.passed >= expected_passed, result.summary()
 
 
 def run_suite(

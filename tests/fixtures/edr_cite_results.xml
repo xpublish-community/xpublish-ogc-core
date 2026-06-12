@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="UTF-8"?><testng-results ignored="0" total="22" passed="9" failed="2" skipped="11">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-06-12T19:48:18 UTC" name="ogcapi-edr10-1.3" finished-at="2026-06-12T19:48:21 UTC" duration-ms="3047">
+    <groups>
+      <group name="conformance">
+        <method signature="Conformance.validateConformanceOperationAndResponse(org.opengis.cite.ogcapiedr10.openapi3.TestPoint)[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.Conformance@7a27db09]" name="validateConformanceOperationAndResponse" class="org.opengis.cite.ogcapiedr10.conformance.Conformance"/>
+      </group> <!-- conformance -->
+      <group name="landingpage">
+        <method signature="LandingPage.edrLandingPageValidation(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.landingpage.LandingPage@5c47cd58]" name="edrLandingPageValidation" class="org.opengis.cite.ogcapiedr10.landingpage.LandingPage"/>
+      </group> <!-- landingpage -->
+      <group name="apidefinition">
+        <method signature="ApiDefinition.openapiDocumentRetrieval()[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.ApiDefinition@62577e2d]" name="openapiDocumentRetrieval" class="org.opengis.cite.ogcapiedr10.conformance.ApiDefinition"/>
+        <method signature="ApiDefinition.apiDefinitionValidation(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.ApiDefinition@62577e2d]" name="apiDefinitionValidation" class="org.opengis.cite.ogcapiedr10.conformance.ApiDefinition"/>
+      </group> <!-- apidefinition -->
+    </groups>
+    <test started-at="2026-06-12T19:48:18 UTC" name="Preconditions" finished-at="2026-06-12T19:48:18 UTC" duration-ms="38">
+    </test> <!-- Preconditions -->
+    <test started-at="2026-06-12T19:48:18 UTC" name="Core" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1888">
+      <class name="org.opengis.cite.ogcapiedr10.conformance.ApiDefinition">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.ApiDefinition@62577e2d]" started-at="2026-06-12T19:48:20 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="retrieveApiUrl()[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.ApiDefinition@62577e2d]" started-at="2026-06-12T19:48:20 UTC" name="retrieveApiUrl" finished-at="2026-06-12T19:48:20 UTC" depends-on-methods="org.opengis.cite.ogcapiedr10.CommonFixture.initCommonFixture" duration-ms="72" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveApiUrl -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.ApiDefinition@62577e2d]" started-at="2026-06-12T19:48:20 UTC" name="clearMessages" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="openapiDocumentRetrieval()[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.ApiDefinition@62577e2d]" started-at="2026-06-12T19:48:20 UTC" name="openapiDocumentRetrieval" description="Implements Abstract Test 4 (/conf/core/api-definition)" groups="apidefinition" depends-on-groups="landingpage" finished-at="2026-06-12T19:48:20 UTC" duration-ms="42" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openapiDocumentRetrieval -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.ApiDefinition@62577e2d]" started-at="2026-06-12T19:48:20 UTC" name="clearMessages" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="apiDefinitionValidation(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.ApiDefinition@62577e2d]" started-at="2026-06-12T19:48:20 UTC" name="apiDefinitionValidation" description="Implements Abstract Test 5 (/conf/core/api-definition-success)" groups="apidefinition" finished-at="2026-06-12T19:48:20 UTC" depends-on-methods="org.opengis.cite.ogcapiedr10.conformance.ApiDefinition.openapiDocumentRetrieval" duration-ms="2" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              API definition is not valid. Found following validation items:  @ http://host.docker.internal:64994/openapi.json[1:3622-1:3628]  - ERROR: Value 'null' does not match required pattern 'boolean|object|array|number|integer|string'  @ http://host.docker.internal:64994/openapi.json[1:3698-1:3704]  - ERROR: Value 'null' does not match required pattern 'boolean|object|array|number|integer|string'  @ http://host.docker.internal:64994/openapi.json[1:4142-1:4148]  - ERROR: Value 'null' does not match required pattern 'boolean|object|array|number|integer|string'  @ http://host.docker.internal:64994/openapi.json[1:4214-1:4220]  - ERROR: Value 'null' does not match required pattern 'boolean|object|array|number|integer|string'  @ http://host.docker.internal:64994/openapi.json[1:4287-1:4293]  - ERROR: Value 'null' does not match required pattern 'boolean|object|array|number|integer|string'  @ http://host.docker.internal:64994/openapi.json[1:4359-1:4365]  - ERROR: Value 'null' does not match required pattern 'boolean|object|array|number|integer|string'  @ http://host.docker.internal:64994/openapi.json[1:4435-1:4441]  - ERROR: Value 'null' does not match required pattern 'boolean|object|array|number|integer|string'
+            </message>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+          <attributes>
+            <attribute name="request">
+
+            </attribute> <!-- request -->
+            <attribute name="response">
+
+            </attribute> <!-- response -->
+          </attributes>
+        </test-method> <!-- apiDefinitionValidation -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.conformance.ApiDefinition -->
+      <class name="org.opengis.cite.ogcapiedr10.corecollections.Collections">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]" started-at="2026-06-12T19:48:20 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="requirementClasses(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]" started-at="2026-06-12T19:48:20 UTC" name="requirementClasses" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirementClasses -->
+        <test-method is-config="true" signature="noOfCollections(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]" started-at="2026-06-12T19:48:20 UTC" name="noOfCollections" finished-at="2026-06-12T19:48:20 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noOfCollections -->
+        <test-method is-config="true" signature="retrieveApiModel(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]" started-at="2026-06-12T19:48:20 UTC" name="retrieveApiModel" finished-at="2026-06-12T19:48:20 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveApiModel -->
+        <test-method signature="validateCollectionsMetadataOperation(org.opengis.cite.ogcapiedr10.openapi3.TestPoint)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]" started-at="2026-06-12T19:48:20 UTC" name="validateCollectionsMetadataOperation" description="Implements Abstract Test 82, meets Requirement /req/collections/rc-md-op" depends-on-groups="conformance" finished-at="2026-06-12T19:48:20 UTC" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              Method Collections.validateCollectionsMetadataOperation(org.opengis.cite.ogcapiedr10.openapi3.TestPoint)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977] depends on not successfully finished methods in group "conformance"
+            </message>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateCollectionsMetadataOperation -->
+        <test-method signature="validateCollectionMetadata_Links(org.opengis.cite.ogcapiedr10.openapi3.TestPoint)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]" started-at="2026-06-12T19:48:20 UTC" name="validateCollectionMetadata_Links" description="Implements Abstract Test 15, meets Requirement /req/edr/rc-md-query-links" finished-at="2026-06-12T19:48:20 UTC" depends-on-methods="org.opengis.cite.ogcapiedr10.corecollections.Collections.validateCollectionsMetadataOperation" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              Method org.opengis.cite.ogcapiedr10.corecollections.Collections.validateCollectionMetadata_Links() on instance org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977 depends on not successfully finished methods
+[org.opengis.cite.ogcapiedr10.corecollections.Collections.validateCollectionsMetadataOperation() on instance org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]
+            </message>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateCollectionMetadata_Links -->
+        <test-method signature="validateCollectionsMetadata_Links(org.opengis.cite.ogcapiedr10.openapi3.TestPoint)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]" started-at="2026-06-12T19:48:20 UTC" name="validateCollectionsMetadata_Links" description="Implements Abstract Test 16, meets Requirement /req/core/rc-collection-info-links" finished-at="2026-06-12T19:48:20 UTC" depends-on-methods="org.opengis.cite.ogcapiedr10.corecollections.Collections.validateCollectionsMetadataOperation" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              Method org.opengis.cite.ogcapiedr10.corecollections.Collections.validateCollectionsMetadata_Links() on instance org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977 depends on not successfully finished methods
+[org.opengis.cite.ogcapiedr10.corecollections.Collections.validateCollectionsMetadataOperation() on instance org.opengis.cite.ogcapiedr10.corecollections.Collections@2d119977]
+            </message>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateCollectionsMetadata_Links -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.corecollections.Collections -->
+      <class name="org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:18 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:18 UTC" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:18 UTC" name="clearMessages" finished-at="2026-06-12T19:48:18 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="collectionsCRS84()[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:18 UTC" name="collectionsCRS84" description="Implements Abstract Test 8 (/conf/core/crs84)" finished-at="2026-06-12T19:48:19 UTC" duration-ms="533" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- collectionsCRS84 -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:19 UTC" name="clearMessages" finished-at="2026-06-12T19:48:19 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="collectionsParameters()[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:19 UTC" name="collectionsParameters" description="Implements Abstract Test 17 (/conf/edr/rc-parameters)" finished-at="2026-06-12T19:48:19 UTC" duration-ms="106" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- collectionsParameters -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:19 UTC" name="clearMessages" finished-at="2026-06-12T19:48:19 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateRetrievalOfCollections(java.lang.Object)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:19 UTC" name="validateRetrievalOfCollections" description="Implements Abstract Test 9 (/conf/collections/rc-md-op) and Abstract Test 10 (/conf/rc-md-success)" data-provider="collectionIDs" finished-at="2026-06-12T19:48:19 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                [air]
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateRetrievalOfCollections -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:19 UTC" name="clearMessages" finished-at="2026-06-12T19:48:19 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateRetrievalOfEnvironmentalDataCollections(java.lang.Object)[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:19 UTC" name="validateRetrievalOfEnvironmentalDataCollections" description="Implements Abstract Test 11 (/conf/collections/src-md-op) and Abstract Test 12 (/conf/collections/src-md-success)" data-provider="collectionIDs" finished-at="2026-06-12T19:48:19 UTC" duration-ms="124" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                [air]
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateRetrievalOfEnvironmentalDataCollections -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:19 UTC" name="clearMessages" finished-at="2026-06-12T19:48:19 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="verifyCollectionsMetadata()[pri:0, instance:org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse@746e2cee]" started-at="2026-06-12T19:48:19 UTC" name="verifyCollectionsMetadata" description="Implements Abstract Test 13 (/conf/core/rc-extent), Abstract Test 14 (/conf/edr/rc-collection-info), Abstract Test 15 (/conf/edr/rc-md-query-links), Abstract Test 16 (/conf/core/rc-collection-info-links)" finished-at="2026-06-12T19:48:19 UTC" duration-ms="274" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCollectionsMetadata -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.corecollections.CollectionsResponse -->
+      <class name="org.opengis.cite.ogcapiedr10.conformance.Conformance">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.Conformance@7a27db09]" started-at="2026-06-12T19:48:19 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:19 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method signature="http()[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.Conformance@7a27db09]" started-at="2026-06-12T19:48:19 UTC" name="http" description="Implements Abstract Test 1 and Requirement /req/core/http" finished-at="2026-06-12T19:48:20 UTC" duration-ms="96" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- http -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.Conformance@7a27db09]" started-at="2026-06-12T19:48:19 UTC" name="clearMessages" finished-at="2026-06-12T19:48:19 UTC" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.Conformance@7a27db09]" started-at="2026-06-12T19:48:20 UTC" name="clearMessages" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateConformanceOperationAndResponse(org.opengis.cite.ogcapiedr10.openapi3.TestPoint)[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.Conformance@7a27db09]" started-at="2026-06-12T19:48:20 UTC" name="validateConformanceOperationAndResponse" description="Implements Abstract Test 6 (/conf/core/conformance) and Abstract Test 7 (/conf/core/conformance-success)" groups="conformance" data-provider="conformanceUris" finished-at="2026-06-12T19:48:20 UTC" duration-ms="120" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                Server URL: http://host.docker.internal:64994 , Path: /conformance, Replacements: {}
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              Requirement class "http://www.opengis.net/spec/ogcapi-edr-1/1.0/conf/core" is not available from path http://host.docker.internal:64994/conformance expected [true] but found [false]
+            </message>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+          <attributes>
+            <attribute name="request">
+              Request method:GET
+Request URI:http://host.docker.internal:64994/conformance/?f=json
+Proxy:&lt;none&gt;
+Request params:&lt;none&gt;
+Query params:&lt;none&gt;
+Form params:&lt;none&gt;
+Path params:&lt;none&gt;
+Headers:Accept=application/json, application/javascript, text/javascript, text/json
+Cookies:&lt;none&gt;
+Multiparts:&lt;none&gt;
+Body:&lt;none&gt;
+
+            </attribute> <!-- request -->
+            <attribute name="response">
+              HTTP/1.1 200 OK
+date: Fri, 12 Jun 2026 19:48:19 GMT
+server: uvicorn
+content-length: 387
+content-type: application/json
+
+{
+    "conformsTo": [
+        "http://www.opengis.net/spec/fake-ogc-1/1.0/conf/core",
+        "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+        "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/json",
+        "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/landing-page",
+        "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/oas30",
+        "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections"
+    ]
+}
+
+            </attribute> <!-- response -->
+          </attributes>
+        </test-method> <!-- validateConformanceOperationAndResponse -->
+        <test-method is-config="true" signature="storeRequirementClassesInTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.conformance.Conformance@7a27db09]" started-at="2026-06-12T19:48:20 UTC" name="storeRequirementClassesInTestContext" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- storeRequirementClassesInTestContext -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.conformance.Conformance -->
+      <class name="org.opengis.cite.ogcapiedr10.landingpage.LandingPage">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.landingpage.LandingPage@5c47cd58]" started-at="2026-06-12T19:48:18 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:18 UTC" duration-ms="18" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.landingpage.LandingPage@5c47cd58]" started-at="2026-06-12T19:48:18 UTC" name="clearMessages" finished-at="2026-06-12T19:48:18 UTC" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="edrLandingPageValidation(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.landingpage.LandingPage@5c47cd58]" started-at="2026-06-12T19:48:18 UTC" name="edrLandingPageValidation" description="Implements Abstract Test 2 (/conf/core/root-op) and Abstract Test 3 (/conf/core/root-success) - Landing Page validation" groups="landingpage" finished-at="2026-06-12T19:48:18 UTC" duration-ms="133" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@24e040fb
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- edrLandingPageValidation -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.landingpage.LandingPage -->
+    </test> <!-- Core -->
+    <test started-at="2026-06-12T19:48:20 UTC" name="Collections" finished-at="2026-06-12T19:48:21 UTC" duration-ms="756">
+      <class name="org.opengis.cite.ogcapiedr10.collections.AreaCollections">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.AreaCollections@7d17a5d0]" started-at="2026-06-12T19:48:21 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="noOfCollections(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.AreaCollections@7d17a5d0]" started-at="2026-06-12T19:48:21 UTC" name="noOfCollections" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noOfCollections -->
+        <test-method is-config="true" signature="requirementClasses(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.AreaCollections@7d17a5d0]" started-at="2026-06-12T19:48:21 UTC" name="requirementClasses" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirementClasses -->
+        <test-method is-config="true" signature="retrieveRequiredInformationFromTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.AreaCollections@7d17a5d0]" started-at="2026-06-12T19:48:21 UTC" name="retrieveRequiredInformationFromTestContext" finished-at="2026-06-12T19:48:21 UTC" duration-ms="7" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveRequiredInformationFromTestContext -->
+        <test-method is-config="true" signature="retrieveApiModel(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.AreaCollections@7d17a5d0]" started-at="2026-06-12T19:48:21 UTC" name="retrieveApiModel" finished-at="2026-06-12T19:48:21 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveApiModel -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.collections.AreaCollections -->
+      <class name="org.opengis.cite.ogcapiedr10.collections.TrajectoryCollections">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.TrajectoryCollections@4b202e2a]" started-at="2026-06-12T19:48:21 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="noOfCollections(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.TrajectoryCollections@4b202e2a]" started-at="2026-06-12T19:48:21 UTC" name="noOfCollections" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noOfCollections -->
+        <test-method is-config="true" signature="requirementClasses(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.TrajectoryCollections@4b202e2a]" started-at="2026-06-12T19:48:21 UTC" name="requirementClasses" finished-at="2026-06-12T19:48:21 UTC" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirementClasses -->
+        <test-method is-config="true" signature="retrieveApiModel(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.TrajectoryCollections@4b202e2a]" started-at="2026-06-12T19:48:21 UTC" name="retrieveApiModel" finished-at="2026-06-12T19:48:21 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveApiModel -->
+        <test-method is-config="true" signature="retrieveRequiredInformationFromTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.TrajectoryCollections@4b202e2a]" started-at="2026-06-12T19:48:21 UTC" name="retrieveRequiredInformationFromTestContext" finished-at="2026-06-12T19:48:21 UTC" duration-ms="7" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveRequiredInformationFromTestContext -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.collections.TrajectoryCollections -->
+      <class name="org.opengis.cite.ogcapiedr10.collections.LocationsCollections">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.LocationsCollections@7c89156f]" started-at="2026-06-12T19:48:20 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="noOfCollections(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.LocationsCollections@7c89156f]" started-at="2026-06-12T19:48:20 UTC" name="noOfCollections" finished-at="2026-06-12T19:48:20 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noOfCollections -->
+        <test-method is-config="true" signature="requirementClasses(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.LocationsCollections@7c89156f]" started-at="2026-06-12T19:48:20 UTC" name="requirementClasses" finished-at="2026-06-12T19:48:20 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirementClasses -->
+        <test-method is-config="true" signature="retrieveRequiredInformationFromTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.LocationsCollections@7c89156f]" started-at="2026-06-12T19:48:20 UTC" name="retrieveRequiredInformationFromTestContext" finished-at="2026-06-12T19:48:20 UTC" duration-ms="77" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveRequiredInformationFromTestContext -->
+        <test-method is-config="true" signature="retrieveApiModel(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.LocationsCollections@7c89156f]" started-at="2026-06-12T19:48:20 UTC" name="retrieveApiModel" finished-at="2026-06-12T19:48:20 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveApiModel -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.collections.LocationsCollections -->
+      <class name="org.opengis.cite.ogcapiedr10.queries.QueryCollections">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="noOfCollections(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="noOfCollections" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noOfCollections -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="clearMessages" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateAreaQueryUsingParameters(java.lang.Object)[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="validateAreaQueryUsingParameters" description="Implements Abstract Test 53 (/conf/area), Abstract Test 55 (/conf/edr/rc-coords-response), Abstract Test 57 (/conf/edr/rc-z-response),  Abstract Test 59 (/conf/core/datetime-response),  Abstract Test 61 (/conf/edr/rc-parameter-name-response), Abstract Test 63 (/conf/edr/REQ_rc-crs-response), Abstract Test 65 (/conf/collections/rc-f-response)" data-provider="collectionIDs" finished-at="2026-06-12T19:48:20 UTC" duration-ms="2" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                [air]
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              None of the collections support this query type. Increase the number of collections to parse.
+            </message>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateAreaQueryUsingParameters -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="clearMessages" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateCoordsQueryParameters(java.lang.Object)[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="validateCoordsQueryParameters" description="Implements Abstract Test 35 (/conf/position),Abstract Test 36 (/conf/position), Abstract Test 51 (/conf/area), Abstract Test 52 (/conf/area), Abstract Test 83 (/conf/trajectory), Abstract Test 101 (/conf/corridor)" data-provider="collectionIDs" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                [air]
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              No data_queries element was present in tested collections.
+            </message>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateCoordsQueryParameters -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="clearMessages" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateCorridorQueryUsingParameters(java.lang.Object)[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="validateCorridorQueryUsingParameters" description="Implements Abstract Test 115 (/conf/corridor), Abstract Test 117 (/conf/edr/rc-coords-response), Abstract Test 119 (/conf/collections/REQ_rc-corridor-width-response), Abstract Test 121 (/conf/collections/REQ_rc-corridor-height-response), Abstract Test 123 (/conf/collections/REQ_rc-width-units-response), Abstract Test 125 (/conf/collections/rc-height-units-response),  Abstract Test 127 (/conf/edr/rc-parameter-name-response), Abstract Test 129 (/conf/edr/REQ_rc-crs-response), Abstract Test 131 (/conf/collections/rc-f-response)" data-provider="collectionIDs" finished-at="2026-06-12T19:48:20 UTC" duration-ms="7" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                [air]
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              None of the collections support this query type. Increase the number of collections to parse.
+            </message>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateCorridorQueryUsingParameters -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="clearMessages" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateNoQueryParameters(java.lang.Object)[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="validateNoQueryParameters" description="Implements Abstract Test 34 (/conf/position), Abstract Test 50 (/conf/area), Abstract Test 66 (/conf/cube), Abstract Test 82 (/conf/trajectory), Abstract Test 100 (/conf/corridor), Abstract Test 136 (/conf/locations) " data-provider="collectionIDs" finished-at="2026-06-12T19:48:20 UTC" duration-ms="0" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                [air]
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              No data_queries element was present in tested collections.
+            </message>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateNoQueryParameters -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="clearMessages" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validatePositionQueryUsingParameters(java.lang.Object)[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:20 UTC" name="validatePositionQueryUsingParameters" description="Implements Abstract Test 37 (/conf/position), Abstract Test 39 (/conf/edr/rc-coords-response), Abstract Test 41 (/conf/edr/rc-z-response),  Abstract Test 43 (/conf/core/datetime-response),  Abstract Test 45 (/conf/edr/rc-parameter-name-response), Abstract Test 47 (/conf/edr/REQ_rc-crs-response), Abstract Test 49 (/conf/collections/rc-f-response)" data-provider="collectionIDs" finished-at="2026-06-12T19:48:20 UTC" duration-ms="3" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                [air]
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              None of the collections support this query type. Increase the number of collections to parse.
+            </message>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePositionQueryUsingParameters -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:21 UTC" name="clearMessages" finished-at="2026-06-12T19:48:21 UTC" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateTrajectoryQueryUsingParameters(java.lang.Object)[pri:0, instance:org.opengis.cite.ogcapiedr10.queries.QueryCollections@370c8526]" started-at="2026-06-12T19:48:21 UTC" name="validateTrajectoryQueryUsingParameters" description="Implements Abstract Test 91 (/conf/trajectory), Abstract Test 93 (/conf/edr/rc-coords-response),  Abstract Test 95 (/conf/edr/rc-parameter-name-response), Abstract Test 97 (/conf/edr/REQ_rc-crs-response), Abstract Test 99 (/conf/collections/rc-f-response)" data-provider="collectionIDs" finished-at="2026-06-12T19:48:21 UTC" duration-ms="2" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                [air]
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              None of the collections support this query type. Increase the number of collections to parse.
+            </message>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateTrajectoryQueryUsingParameters -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.queries.QueryCollections -->
+      <class name="org.opengis.cite.ogcapiedr10.collections.PositionCollections">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.PositionCollections@738dbb18]" started-at="2026-06-12T19:48:21 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="noOfCollections(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.PositionCollections@738dbb18]" started-at="2026-06-12T19:48:21 UTC" name="noOfCollections" finished-at="2026-06-12T19:48:21 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noOfCollections -->
+        <test-method is-config="true" signature="retrieveRequiredInformationFromTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.PositionCollections@738dbb18]" started-at="2026-06-12T19:48:21 UTC" name="retrieveRequiredInformationFromTestContext" finished-at="2026-06-12T19:48:21 UTC" duration-ms="7" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveRequiredInformationFromTestContext -->
+        <test-method is-config="true" signature="retrieveApiModel(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.PositionCollections@738dbb18]" started-at="2026-06-12T19:48:21 UTC" name="retrieveApiModel" finished-at="2026-06-12T19:48:21 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveApiModel -->
+        <test-method is-config="true" signature="requirementClasses(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.PositionCollections@738dbb18]" started-at="2026-06-12T19:48:21 UTC" name="requirementClasses" finished-at="2026-06-12T19:48:21 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirementClasses -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.collections.PositionCollections -->
+      <class name="org.opengis.cite.ogcapiedr10.collections.CorridorCollections">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CorridorCollections@25f56c3d]" started-at="2026-06-12T19:48:21 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="noOfCollections(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CorridorCollections@25f56c3d]" started-at="2026-06-12T19:48:21 UTC" name="noOfCollections" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noOfCollections -->
+        <test-method is-config="true" signature="retrieveApiModel(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CorridorCollections@25f56c3d]" started-at="2026-06-12T19:48:21 UTC" name="retrieveApiModel" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveApiModel -->
+        <test-method is-config="true" signature="requirementClasses(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CorridorCollections@25f56c3d]" started-at="2026-06-12T19:48:21 UTC" name="requirementClasses" finished-at="2026-06-12T19:48:21 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirementClasses -->
+        <test-method is-config="true" signature="retrieveRequiredInformationFromTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CorridorCollections@25f56c3d]" started-at="2026-06-12T19:48:21 UTC" name="retrieveRequiredInformationFromTestContext" finished-at="2026-06-12T19:48:21 UTC" duration-ms="11" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveRequiredInformationFromTestContext -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.collections.CorridorCollections -->
+      <class name="org.opengis.cite.ogcapiedr10.collections.CubeCollections">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CubeCollections@41a9a3d9]" started-at="2026-06-12T19:48:20 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="noOfCollections(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CubeCollections@41a9a3d9]" started-at="2026-06-12T19:48:20 UTC" name="noOfCollections" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noOfCollections -->
+        <test-method is-config="true" signature="retrieveApiModel(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CubeCollections@41a9a3d9]" started-at="2026-06-12T19:48:20 UTC" name="retrieveApiModel" finished-at="2026-06-12T19:48:20 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveApiModel -->
+        <test-method is-config="true" signature="requirementClasses(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CubeCollections@41a9a3d9]" started-at="2026-06-12T19:48:20 UTC" name="requirementClasses" finished-at="2026-06-12T19:48:20 UTC" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirementClasses -->
+        <test-method is-config="true" signature="retrieveRequiredInformationFromTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.collections.CubeCollections@41a9a3d9]" started-at="2026-06-12T19:48:20 UTC" name="retrieveRequiredInformationFromTestContext" finished-at="2026-06-12T19:48:20 UTC" duration-ms="20" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@77db8bca
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveRequiredInformationFromTestContext -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.collections.CubeCollections -->
+    </test> <!-- Collections -->
+    <test started-at="2026-06-12T19:48:21 UTC" name="JSON" finished-at="2026-06-12T19:48:21 UTC" duration-ms="349">
+      <class name="org.opengis.cite.ogcapiedr10.encodings.json.JSONEncoding">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.json.JSONEncoding@56c4d2b2]" started-at="2026-06-12T19:48:21 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@7b756396
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.json.JSONEncoding@56c4d2b2]" started-at="2026-06-12T19:48:21 UTC" name="clearMessages" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateResponseForJSON()[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.json.JSONEncoding@56c4d2b2]" started-at="2026-06-12T19:48:21 UTC" name="validateResponseForJSON" description="Implements Abstract Test 18 (/conf/json/definition), Abstract Test 19 (/conf/json/content)" finished-at="2026-06-12T19:48:21 UTC" duration-ms="344" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateResponseForJSON -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.encodings.json.JSONEncoding -->
+    </test> <!-- JSON -->
+    <test started-at="2026-06-12T19:48:21 UTC" name="GeoJSON" finished-at="2026-06-12T19:48:21 UTC" duration-ms="6">
+      <class name="org.opengis.cite.ogcapiedr10.encodings.geojson.GeoJSONEncoding">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.geojson.GeoJSONEncoding@75342120]" started-at="2026-06-12T19:48:21 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@5aee31c7
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method signature="validateResponseForGeoJSON(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.geojson.GeoJSONEncoding@75342120]" started-at="2026-06-12T19:48:21 UTC" name="validateResponseForGeoJSON" description="Implements Abstract Test 20 (/conf/geojson/definition), Abstract Test 21 (/conf/geojson/content)" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@5aee31c7
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              Requirements class http://www.opengis.net/spec/ogcapi-edr-1/1.0/conf/geojson not implemented.
+            </message>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateResponseForGeoJSON -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.geojson.GeoJSONEncoding@75342120]" started-at="2026-06-12T19:48:21 UTC" name="clearMessages" finished-at="2026-06-12T19:48:21 UTC" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.encodings.geojson.GeoJSONEncoding -->
+    </test> <!-- GeoJSON -->
+    <test started-at="2026-06-12T19:48:21 UTC" name="EDRGeoJSON" finished-at="2026-06-12T19:48:21 UTC" duration-ms="4">
+      <class name="org.opengis.cite.ogcapiedr10.SuitePreconditions">
+        <test-method is-config="true" signature="verifyTestSubject()[pri:0, instance:org.opengis.cite.ogcapiedr10.SuitePreconditions@10e9fee0]" started-at="2026-06-12T19:48:18 UTC" name="verifyTestSubject" finished-at="2026-06-12T19:48:18 UTC" duration-ms="49" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyTestSubject -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.SuitePreconditions -->
+      <class name="org.opengis.cite.ogcapiedr10.encodings.edrgeojson.EDRGeoJSONEncoding">
+        <test-method is-config="true" signature="initCommonFixture(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.edrgeojson.EDRGeoJSONEncoding@f478772]" started-at="2026-06-12T19:48:21 UTC" name="initCommonFixture" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@527e21fc
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initCommonFixture -->
+        <test-method is-config="true" signature="clearMessages()[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.edrgeojson.EDRGeoJSONEncoding@f478772]" started-at="2026-06-12T19:48:21 UTC" name="clearMessages" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMessages -->
+        <test-method signature="validateResponseForEDRGeoJSON(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.ogcapiedr10.encodings.edrgeojson.EDRGeoJSONEncoding@f478772]" started-at="2026-06-12T19:48:21 UTC" name="validateResponseForEDRGeoJSON" description="Implements Abstract Test 22 (/conf/edr-geojson/definition), Abstract Test 23 (/conf/edr-geojson/content)" finished-at="2026-06-12T19:48:21 UTC" duration-ms="1" status="SKIP">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@527e21fc
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              Requirements class http://www.opengis.net/spec/ogcapi-edr-1/1.0/req/edr-geojson not implemented.
+            </message>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateResponseForEDRGeoJSON -->
+      </class> <!-- org.opengis.cite.ogcapiedr10.encodings.edrgeojson.EDRGeoJSONEncoding -->
+    </test> <!-- EDRGeoJSON -->
+  </suite> <!-- ogcapi-edr10-1.3 -->
+</testng-results>

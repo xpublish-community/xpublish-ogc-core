@@ -11,11 +11,8 @@ Deselect with `-m "not cite"`.
 """
 
 import pytest
-import xpublish
-from conftest import FakeOgcPlugin
 
 from xpublish_ogc_core import teamengine
-from xpublish_ogc_core.plugin import OgcCorePlugin
 
 pytestmark = [
     pytest.mark.cite,
@@ -39,15 +36,10 @@ KNOWN_FAILURES = {
 }
 
 
-def test_common_subset_of_edr_cite_suite(air_dataset):
-    rest = xpublish.Rest(
-        {"air": air_dataset},
-        plugins={"ogc": OgcCorePlugin(), "fake": FakeOgcPlugin()},
-    )
-
+def test_common_subset_of_edr_cite_suite(app, subtests):
     result = teamengine.run_suite_with_app(
         SUITE,
-        rest.app,
+        app,
         {
             "iut": "http://localhost/",
             "apiDefinition": "http://localhost/openapi.json",
@@ -55,10 +47,9 @@ def test_common_subset_of_edr_cite_suite(air_dataset):
         ETS_IMAGE,
     )
 
-    unexpected = result.failure_names() - KNOWN_FAILURES
-    assert not unexpected, f"Unexpected CITE failures:\n{result.summary()}"
-
-    fixed = KNOWN_FAILURES - result.failure_names()
-    assert not fixed, f"Known failures now pass, remove them from KNOWN_FAILURES: {sorted(fixed)}"
-
-    assert result.passed >= 9, f"Suite did not run as expected:\n{result.summary()}"
+    teamengine.report_subtests(
+        result,
+        subtests,
+        known_failures=KNOWN_FAILURES,
+        expected_passed=9,
+    )

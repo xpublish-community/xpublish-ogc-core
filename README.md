@@ -108,11 +108,3 @@ Development on this plugin, and for other OGC plugins is driven by the official 
 
   assert not result.failure_names(), result.summary()
   ```
-
-## Development
-
-Tests cover every endpoint against the vendored OGC schemas (using a stub OGC plugin to exercise the hook plumbing) and fuzz the API with [Schemathesis](https://schemathesis.readthedocs.io/) against the app's own OpenAPI description:
-
-```shell
-uv run pytest
-```

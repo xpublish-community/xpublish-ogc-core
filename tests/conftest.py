@@ -9,6 +9,9 @@ from xpublish import Dependencies, Plugin, hookimpl
 
 from xpublish_ogc_core.plugin import OgcCorePlugin
 
+# lets test_teamengine.py drive report_subtests in an isolated pytest run
+pytest_plugins = ["pytester"]
+
 FAKE_CONFORMANCE_CLASS = "http://www.opengis.net/spec/fake-ogc-1/1.0/conf/core"
 
 

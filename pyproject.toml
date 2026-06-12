@@ -62,7 +62,7 @@ ignore = [
 ]
 
 [tool.codespell]
-skip = "src/xpublish_ogc_core/schemas/*"
+skip = "src/xpublish_ogc_core/schemas/*,tests/fixtures/*"
 
 [tool.check-manifest]
 ignore = [ "src/xpublish_ogc_core/_version.py" ]
