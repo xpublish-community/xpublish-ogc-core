@@ -3,9 +3,7 @@
   "title": "Conformance Declaration Schema",
   "description": "This schema defines the resource returned from the /Conformance path",
   "type": "object",
-  "required": [
-    "conformsTo"
-  ],
+  "required": ["conformsTo"],
   "properties": {
     "conformsTo": {
       "type": "array",

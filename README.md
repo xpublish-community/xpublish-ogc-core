@@ -8,12 +8,12 @@ This works by creating an `app_router` that restructures the Xpublish API around
 
 ## Endpoints
 
-| Path | Description |
-| ---- | ----------- |
-| `/` | Landing page with `self`, `service-desc` (`/openapi.json`), `service-doc` (`/docs`), `conformance`, and `data` links (including the `http://www.opengis.net/def/rel/ogc/1.0/...` link relations) |
-| `/conformance` | OGC API - Common conformance classes, plus every class declared by plugins via the `ogc_conformance_classes` hook |
-| `/collections` | One collection per published dataset, built from dataset attributes plus plugin contributions |
-| `/collections/{collection_id}` | A single collection, with `data_queries` aggregated from the `ogc_collection_dataqueries` hook. Unknown ids return an OGC `exception` shaped 404 |
+| Path                           | Description                                                                                                                                                                                      |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `/`                            | Landing page with `self`, `service-desc` (`/openapi.json`), `service-doc` (`/docs`), `conformance`, and `data` links (including the `http://www.opengis.net/def/rel/ogc/1.0/...` link relations) |
+| `/conformance`                 | OGC API - Common conformance classes, plus every class declared by plugins via the `ogc_conformance_classes` hook                                                                                |
+| `/collections`                 | One collection per published dataset, built from dataset attributes plus plugin contributions                                                                                                    |
+| `/collections/{collection_id}` | A single collection, with `data_queries` aggregated from the `ogc_collection_dataqueries` hook. Unknown ids return an OGC `exception` shaped 404                                                 |
 
 If `xpublish-ogc-core` is installed it is loaded automatically through the `xpublish.plugin` entry point. The landing page title and description are configurable on the plugin, by instantiating it explicitly (note that passing `plugins` to `xpublish.Rest` disables entry point auto-loading, so list every plugin you want):
 
@@ -45,6 +45,7 @@ Other OGC plugins implement these `hookspec`s (declared on `OgcPluginSpec`):
 Development is driven by the official OGC schemas instead of hand-approximated responses:
 
 - The official OGC schemas are vendored under `src/xpublish_ogc_core/schemas/` so tests run offline (refresh with `uv run scripts/update_schemas.py`): the [OGC API - Common Part 1](https://schemas.opengis.net/ogcapi/common/part1/1.0/openapi/schemas/) building blocks plus the collections shapes from [OGC API - Features Part 1](https://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/) (the `"common"` document, which core's own responses validate against), and the bundled OpenAPI documents published by the [OGC API - EDR](https://github.com/opengeospatial/ogcapi-environmental-data-retrieval) and [OGC API - Tiles](https://github.com/opengeospatial/ogcapi-tiles) standards for the plugins implementing them.
+
 - `xpublish_ogc_core.testing` is shipped with the package so downstream plugins can validate their own responses against the official component schemas (the `document` argument picks the schema set, defaulting to `"edr"`):
 
   ```python
@@ -52,7 +53,11 @@ Development is driven by the official OGC schemas instead of hand-approximated r
 
   validate_response("landingPage", client.get("/").json(), document="common")
   validate_response("collection", client.get("/collections/air").json())
-  validate_response("tileSet", client.get("/datasets/air/tiles/WebMercatorQuad").json(), document="tiles")
+  validate_response(
+      "tileSet",
+      client.get("/datasets/air/tiles/WebMercatorQuad").json(),
+      document="tiles",
+  )
   ```
 
   Validation failures raise with the jsonschema error messages, pointing at the exact spec violation.

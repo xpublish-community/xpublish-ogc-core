@@ -1,9 +1,6 @@
 {
   "type": "object",
-  "required": [
-    "links",
-    "collections"
-  ],
+  "required": ["links", "collections"],
   "properties": {
     "links": {
       "type": "array",

@@ -26,12 +26,7 @@
             "items": {
               "type": "number"
             },
-            "example": [
-              -180,
-              -90,
-              180,
-              90
-            ]
+            "example": [-180, -90, 180, 90]
           }
         },
         "crs": {
@@ -63,18 +58,13 @@
               "format": "date-time",
               "nullable": true
             },
-            "example": [
-              "2011-11-11T12:22:11Z",
-              null
-            ]
+            "example": ["2011-11-11T12:22:11Z", null]
           }
         },
         "trs": {
           "description": "Coordinate reference system of the coordinates in the temporal extent\n(property `interval`). The default reference system is the Gregorian calendar.\nIn the Core this is the only supported temporal coordinate reference system.\nExtensions may support additional temporal coordinate reference systems and add\nadditional enum values.",
           "type": "string",
-          "enum": [
-            "http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"
-          ],
+          "enum": ["http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"],
           "default": "http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"
         }
       }

@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Annotated, Any, Dict, List
 from urllib.parse import urljoin
 
@@ -24,12 +25,14 @@ class OgcPluginSpec(Plugin):
     """A specification for OGC plugins."""
 
     @hookspec
-    def ogc_router(self, deps: Dependencies) -> Annotated[APIRouter, "An OGC specific router"]:
+    def ogc_router(  # type: ignore[empty-body]
+        self, deps: Dependencies
+    ) -> Annotated[APIRouter, "An OGC specific router"]:
         """A hook specification for adding OGC specific routers."""
         pass
 
     @hookspec
-    def ogc_conformance_classes(self) -> Annotated[List[str], "Conformance class URIs"]:
+    def ogc_conformance_classes(self) -> Annotated[List[str], "Conformance class URIs"]:  # type: ignore[empty-body]
         """A hook specification for declaring the OGC conformance classes a plugin satisfies.
 
         URIs follow the http://www.opengis.net/spec/... pattern and are aggregated
@@ -38,7 +41,7 @@ class OgcPluginSpec(Plugin):
         pass
 
     @hookspec
-    def ogc_collection_metadata(
+    def ogc_collection_metadata(  # type: ignore[empty-body]
         self,
         collection_id: str,
         ds: xr.Dataset,
@@ -52,7 +55,7 @@ class OgcPluginSpec(Plugin):
         pass
 
     @hookspec
-    def ogc_collection_dataqueries(
+    def ogc_collection_dataqueries(  # type: ignore[empty-body]
         self,
         collection_id: str,
         ds: xr.Dataset,
@@ -84,7 +87,7 @@ class OgcCorePlugin(Plugin):
     """OgcCorePlugin is a plugin that provides OGC Core functionality, and supports other OGC Xpublish plugins."""
 
     name: str = "ogc-core"
-    app_router_tags: List[str] = ["OGC Core"]
+    app_router_tags: list[str | Enum] | None = ["OGC Core"]
 
     title: str = "Xpublish OGC API"
     description: str = "OGC API access to datasets served by Xpublish"
@@ -103,7 +106,9 @@ class OgcCorePlugin(Plugin):
         for subrouter in deps.plugin_manager().hook.ogc_router(deps=deps):
             router.include_router(subrouter)
 
-        def build_collection(collection_id: str, ds: xr.Dataset, base_url: str) -> Dict[str, Any]:
+        def build_collection(
+            collection_id: str, ds: xr.Dataset, base_url: str
+        ) -> Dict[str, Any]:
             """Build a collection object: the OGC API - Common members from the
             dataset, then plugin contributions merged on top.
 
@@ -122,7 +127,9 @@ class OgcCorePlugin(Plugin):
 
             keywords = ds.attrs.get("keywords")
             if isinstance(keywords, str):
-                collection["keywords"] = [keyword.strip() for keyword in keywords.split(",")]
+                collection["keywords"] = [
+                    keyword.strip() for keyword in keywords.split(",")
+                ]
             elif keywords is not None:
                 collection["keywords"] = list(keywords)
 
@@ -166,9 +173,7 @@ class OgcCorePlugin(Plugin):
                 if not contribution:
                     continue
                 contribution = dict(contribution)
-                links.extend(
-                    absolutize(link) for link in contribution.pop("links", [])
-                )
+                links.extend(absolutize(link) for link in contribution.pop("links", []))
                 collection.update(contribution)
 
             data_queries: Dict[str, Dict] = {}
@@ -283,7 +288,9 @@ class OgcCorePlugin(Plugin):
                     ),
                 ],
                 collections=[
-                    build_collection(collection_id, deps.dataset(collection_id), base_url)
+                    build_collection(
+                        collection_id, deps.dataset(collection_id), base_url
+                    )
                     for collection_id in deps.dataset_ids()
                 ],
             )
@@ -298,7 +305,9 @@ class OgcCorePlugin(Plugin):
                 ds = deps.dataset(collection_id)
             except HTTPException as e:
                 if e.status_code == 404:
-                    return ogc_exception(404, f"Collection {collection_id!r} does not exist")
+                    return ogc_exception(
+                        404, f"Collection {collection_id!r} does not exist"
+                    )
                 raise
 
             return build_collection(collection_id, ds, str(request.base_url))

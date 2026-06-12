@@ -40,9 +40,7 @@
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Capabilities"
-        ],
+        "tags": ["Capabilities"],
         "summary": "landing page of this API",
         "description": "The landing page provides links to the API definition, the Conformance statements and the metadata about the feature data in this dataset.",
         "operationId": "getLandingPage",
@@ -60,9 +58,7 @@
     },
     "/conformance": {
       "get": {
-        "tags": [
-          "Capabilities"
-        ],
+        "tags": ["Capabilities"],
         "summary": "Information about standards that this API conforms to",
         "description": "List all requirements classes specified in a standard that the server conforms to",
         "operationId": "getRequirementsClasses",
@@ -80,9 +76,7 @@
     },
     "/collections": {
       "get": {
-        "tags": [
-          "Capabilities"
-        ],
+        "tags": ["Capabilities"],
         "summary": "List the avialable collections from the service",
         "operationId": "listCollections",
         "parameters": [
@@ -108,9 +102,7 @@
     },
     "/collections/{collectionId}": {
       "get": {
-        "tags": [
-          "Collection metadata"
-        ],
+        "tags": ["Collection metadata"],
         "summary": "List query types supported by the collection",
         "description": "This will provide information about the query types that are supported by the chosen collection Use content negotiation to request HTML or JSON",
         "operationId": "getQueries",
@@ -134,9 +126,7 @@
     },
     "/collections/{collectionId}/position": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for position queries  of collection {collectionId}",
         "description": "Query end point for position queries",
         "operationId": "GetDataForPoint",
@@ -191,9 +181,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for position queries  of collection {collectionId}",
         "description": "Query end point for position queries",
         "operationId": "PostDataForPoint",
@@ -232,9 +220,7 @@
     },
     "/collections/{collectionId}/radius": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for radius queries  of collection {collectionId}",
         "description": "Query end point for to return values within a defined radius of a point queries",
         "operationId": "GetDataForRadius",
@@ -295,9 +281,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for radius queries  of collection {collectionId}",
         "description": "Query end point for to return values within a defined radius of a point queries",
         "operationId": "PostDataForRadius",
@@ -336,9 +320,7 @@
     },
     "/collections/{collectionId}/area": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for area queries  of collection {collectionId} defined by a polygon",
         "description": "Return the data values for the data area defined by the query parameters",
         "operationId": "GetDataForArea",
@@ -399,9 +381,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for area queries  of collection {collectionId} defined by a polygon",
         "description": "Return the data values for the data area defined by the query parameters",
         "operationId": "PostDataForArea",
@@ -440,9 +420,7 @@
     },
     "/collections/{collectionId}/cube": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for Cube queries  of collection {collectionId} defined by a cube",
         "description": "Return the data values for the data Cube defined by the query parameters",
         "operationId": "GetDataForCube",
@@ -503,9 +481,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for Cube queries  of collection {collectionId} defined by a cube",
         "description": "Return the data values for the data Cube defined by the query parameters",
         "operationId": "PostDataForCube",
@@ -544,9 +520,7 @@
     },
     "/collections/{collectionId}/trajectory": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for trajectory queries  of collection {collectionId} defined by a wkt linestring and a iso8601 time period",
         "description": "Return the data values for the data Polygon defined by the query parameters",
         "operationId": "GetDataForTrajectory",
@@ -598,9 +572,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for trajectory queries  of collection {collectionId} defined by a wkt linestring and a iso8601 time period",
         "description": "Return the data values for the data Polygon defined by the query parameters",
         "operationId": "PostDataForTrajectory",
@@ -639,9 +611,7 @@
     },
     "/collections/{collectionId}/corridor": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for Corridor queries  of collection {collectionId} defined by a polygon",
         "description": "Return the data values for the Corridor defined by the query parameters",
         "operationId": "GetDataForCorridor",
@@ -711,9 +681,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for Corridor queries  of collection {collectionId} defined by a polygon",
         "description": "Return the data values for the Corridor defined by the query parameters",
         "operationId": "PostDataForCorridor",
@@ -752,9 +720,7 @@
     },
     "/collections/{collectionId}/items": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "List available items",
         "description": "List the items available in the collection accessible via a unique identifier",
         "operationId": "ListDataItems",
@@ -797,9 +763,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "List available items",
         "description": "List the items available in the collection accessible via a unique identifier",
         "operationId": "PostListDataItems",
@@ -813,9 +777,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "bbox"
-                ],
+                "required": ["bbox"],
                 "properties": {
                   "bbox": {
                     "type": "string"
@@ -855,9 +817,7 @@
     },
     "/collections/{collectionId}/items/{itemId}": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Return item {itemId} from collection {collectionId}",
         "description": "Query end point to retrieve data from collection {collectionId} using a unique identifier",
         "operationId": "GetDataForItem",
@@ -894,9 +854,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Return item {itemId} from collection {collectionId}",
         "description": "Query end point to retrieve data from collection {collectionId} using a unique identifier",
         "operationId": "PostDataForItem",
@@ -935,9 +893,7 @@
     },
     "/collections/{collectionId}/instances": {
       "get": {
-        "tags": [
-          "Instance metadata"
-        ],
+        "tags": ["Instance metadata"],
         "summary": "List data instances of {collectionId}",
         "description": "This will provide list of the avalable instances of the collection Use content negotiation to request HTML or JSON.",
         "operationId": "getCollectionInstances",
@@ -961,9 +917,7 @@
     },
     "/collections/{collectionId}/instances/{instanceId}/position": {
       "get": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for position queries of instance {instanceId} of collection {collectionId}",
         "description": "Query end point for position queries",
         "operationId": "GetInstanceDataForPoint",
@@ -1021,9 +975,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for position queries of instance {instanceId} of collection {collectionId}",
         "description": "Query end point for position queries",
         "operationId": "PostInstanceDataForPoint",
@@ -1065,9 +1017,7 @@
     },
     "/collections/{collectionId}/instances/{instanceId}/radius": {
       "get": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point to return data within defined radius of a point for an instance {instanceId} of collection {collectionId}",
         "description": "Query end point to return all data within a defined radius of the defined point location queries",
         "operationId": "GetInstanceDataForRadius",
@@ -1131,9 +1081,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point to return data within defined radius of a point for an instance {instanceId} of collection {collectionId}",
         "description": "Query end point to return all data within a defined radius of the defined point location queries",
         "operationId": "PostInstanceDataForRadius",
@@ -1175,9 +1123,7 @@
     },
     "/collections/{collectionId}/instances/{instanceId}/area": {
       "get": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for area queries of instance {instanceId} of collection {collectionId} defined by a polygon",
         "description": "Return the data values for the data area defined by the query parameters",
         "operationId": "GetInstanceDataForArea",
@@ -1241,9 +1187,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for area queries of instance {instanceId} of collection {collectionId} defined by a polygon",
         "description": "Return the data values for the data area defined by the query parameters",
         "operationId": "PostInstanceDataForArea",
@@ -1285,9 +1229,7 @@
     },
     "/collections/{collectionId}/instances/{instanceId}/cube": {
       "get": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for Cube queries of instance {instanceId} of collection {collectionId} defined by a cube",
         "description": "Return the data values for the data Cube defined by the query parameters",
         "operationId": "GetInstanceDataForCube",
@@ -1351,9 +1293,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for Cube queries of instance {instanceId} of collection {collectionId} defined by a cube",
         "description": "Return the data values for the data Cube defined by the query parameters",
         "operationId": "PostInstanceDataForCube",
@@ -1395,9 +1335,7 @@
     },
     "/collections/{collectionId}/instances/{instanceId}/trajectory": {
       "get": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for trajectory queries of instance {instanceId} of collection {collectionId} defined by a wkt linestring and a iso8601 time period",
         "description": "Return the data values for the data Polygon defined by the query parameters",
         "operationId": "GetInstanceDataForTrajectory",
@@ -1452,9 +1390,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for trajectory queries of instance {instanceId} of collection {collectionId} defined by a wkt linestring and a iso8601 time period",
         "description": "Return the data values for the data Polygon defined by the query parameters",
         "operationId": "PostInstanceDataForTrajectory",
@@ -1496,9 +1432,7 @@
     },
     "/collections/{collectionId}/instances/{instanceId}/corridor": {
       "get": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for Corridor queries of instance {instanceId} of collection {collectionId} defined by a polygon",
         "description": "Return the data values for the Corridor defined by the query parameters",
         "operationId": "GetInstanceDataForCorridor",
@@ -1571,9 +1505,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for Corridor queries of instance {instanceId} of collection {collectionId} defined by a polygon",
         "description": "Return the data values for the Corridor defined by the query parameters",
         "operationId": "PostInstanceDataForCorridor",
@@ -1615,9 +1547,7 @@
     },
     "/collections/{collectionId}/locations": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "List available location identifers for the collection",
         "description": "List the locations available for the collection",
         "operationId": "ListCollectionDataLocations",
@@ -1660,9 +1590,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "List available location identifers for the collection",
         "description": "List the locations available for the collection",
         "operationId": "PostListCollectionDataLocations",
@@ -1701,9 +1629,7 @@
     },
     "/collections/{collectionId}/locations/{locationId}": {
       "get": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for queries of collection {collectionId} defined by a location id",
         "description": "Return data the for the location defined by locid",
         "operationId": "GetCollectionDataForLocation",
@@ -1755,9 +1681,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Collection data queries"
-        ],
+        "tags": ["Collection data queries"],
         "summary": "Query end point for queries of collection {collectionId} defined by a location id",
         "description": "Return data the for the location defined by locid",
         "operationId": "PostCollectionDataForLocation",
@@ -1799,9 +1723,7 @@
     },
     "/collections/{collectionId}/instances/{instanceId}/locations": {
       "get": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "List available location identifers for the instance",
         "description": "List the locations available for the instance of the collection",
         "operationId": "GetListDataInstanceLocations",
@@ -1847,9 +1769,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "List available location identifers for the instance",
         "description": "List the locations available for the instance of the collection",
         "operationId": "PostListDataInstanceLocations",
@@ -1891,9 +1811,7 @@
     },
     "/collections/{collectionId}/instances/{instanceId}/locations/{locationId}": {
       "get": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for queries of instance {instanceId} of collection {collectionId} defined by a location id",
         "description": "Return data the for the location defined by locid",
         "operationId": "GetInstanceDataForLocation",
@@ -1945,9 +1863,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Instance data queries"
-        ],
+        "tags": ["Instance data queries"],
         "summary": "Query end point for queries of instance {instanceId} of collection {collectionId} defined by a location id",
         "description": "Return data the for the location defined by locid",
         "operationId": "PostInstanceDataForLocation",
@@ -2283,10 +2199,7 @@
     "schemas": {
       "link": {
         "type": "object",
-        "required": [
-          "href",
-          "rel"
-        ],
+        "required": ["href", "rel"],
         "properties": {
           "href": {
             "type": "string",
@@ -2319,9 +2232,7 @@
       },
       "landingPage": {
         "type": "object",
-        "required": [
-          "links"
-        ],
+        "required": ["links"],
         "properties": {
           "title": {
             "type": "string",
@@ -2406,9 +2317,7 @@
       },
       "confClasses": {
         "type": "object",
-        "required": [
-          "conformsTo"
-        ],
+        "required": ["conformsTo"],
         "properties": {
           "conformsTo": {
             "type": "array",
@@ -2420,9 +2329,7 @@
       },
       "exception": {
         "type": "object",
-        "required": [
-          "code"
-        ],
+        "required": ["code"],
         "properties": {
           "code": {
             "type": "string"
@@ -2439,10 +2346,7 @@
           "spatial": {
             "description": "The spatial extent of the information in the collection.",
             "type": "object",
-            "required": [
-              "bbox",
-              "crs"
-            ],
+            "required": ["bbox", "crs"],
             "properties": {
               "bbox": {
                 "description": "One or more bounding boxes that describe the spatial extent of the dataset.\nIn the Core only a single bounding box is supported. Extensions may support\nadditional areas. If multiple areas are provided, the union of the bounding\nboxes describes the spatial extent.",
@@ -2469,22 +2373,12 @@
                     }
                   ]
                 },
-                "example": [
-                  [
-                    -180,
-                    -90,
-                    180,
-                    90
-                  ]
-                ]
+                "example": [[-180, -90, 180, 90]]
               },
               "values": {
                 "description": "Provides information about the spatial resolution available in the collection\nfor the x and y coordinates  \nas number of repetitions / minimum value / interval (e.g. \"R720/0/0.5\") \nor a list of the values (e.g. 0, 0.5, 1.0, 1.5 ... 715, 720)",
                 "type": "object",
-                "required": [
-                  "x",
-                  "y"
-                ],
+                "required": ["x", "y"],
                 "properties": {
                   "x": {
                     "type": "array",
@@ -2516,10 +2410,7 @@
           "temporal": {
             "description": "The temporal extent of the information in the collection.",
             "type": "object",
-            "required": [
-              "interval",
-              "trs"
-            ],
+            "required": ["interval", "trs"],
             "properties": {
               "interval": {
                 "description": "RFC3339 compliant Date and Time",
@@ -2535,12 +2426,7 @@
                     "nullable": true
                   }
                 },
-                "example": [
-                  [
-                    "2020-11-12T12:15Z",
-                    "2020-11-12T12:15Z"
-                  ]
-                ]
+                "example": [["2020-11-12T12:15Z", "2020-11-12T12:15Z"]]
               },
               "values": {
                 "description": "Provides information about the time intervals available in the collection \nas ISO8601 compliant dates, either as a time range specified \nas start time / end time  (e.g. 2017-11-14T09:00Z/2017-11-14T21:00Z)  or\nas number of repetitions / start time / interval (e.g. R4/2017-11-14T21:00Z/PT3H) \nor a list of time values (e.g.\n2017-11-14T09:00Z,2017-11-14T12:00Z,2017-11-14T15:00Z,2017-11-14T18:00Z,2017-11-14T21:00Z)",
@@ -2571,10 +2457,7 @@
           "vertical": {
             "description": "The vertical extent of the information in the collection.",
             "type": "object",
-            "required": [
-              "interval",
-              "vrs"
-            ],
+            "required": ["interval", "vrs"],
             "properties": {
               "interval": {
                 "description": "If multiple intervals are provided, the union of the intervals describes the vertical extent.",
@@ -2588,12 +2471,7 @@
                     "type": "string",
                     "nullable": true
                   },
-                  "example": [
-                    [
-                      "2",
-                      "100"
-                    ]
-                  ]
+                  "example": [["2", "100"]]
                 }
               },
               "values": {
@@ -2603,9 +2481,7 @@
                 "items": {
                   "type": "string",
                   "nullable": true,
-                  "example": [
-                    "R20/1000/-50"
-                  ]
+                  "example": ["R20/1000/-50"]
                 }
               },
               "vrs": {
@@ -2626,11 +2502,7 @@
             "items": {
               "description": "custom dimension defintion",
               "type": "object",
-              "required": [
-                "id",
-                "interval",
-                "reference"
-              ],
+              "required": ["id", "interval", "reference"],
               "properties": {
                 "id": {
                   "description": "The name of the custom dimension.",
@@ -2649,12 +2521,7 @@
                       "type": "string",
                       "nullable": true
                     },
-                    "example": [
-                      [
-                        "0",
-                        "50"
-                      ]
-                    ]
+                    "example": [["0", "50"]]
                   }
                 },
                 "values": {
@@ -2664,9 +2531,7 @@
                   "items": {
                     "type": "string",
                     "nullable": true,
-                    "example": [
-                      "R20/0/5"
-                    ]
+                    "example": ["R20/0/5"]
                   }
                 },
                 "reference": {
@@ -2681,10 +2546,7 @@
       },
       "crsObject": {
         "type": "object",
-        "required": [
-          "crs",
-          "wkt"
-        ],
+        "required": ["crs", "wkt"],
         "properties": {
           "crs": {
             "description": "name of the coordinate reference system, used as the value in the crs query parameter to define the required output CRS",
@@ -2746,16 +2608,12 @@
             "$ref": "#/components/schemas/DataQuery"
           }
         ],
-        "required": [
-          "query_type"
-        ],
+        "required": ["query_type"],
         "properties": {
           "query_type": {
             "description": "Type of EDR query",
             "type": "string",
-            "enum": [
-              "position"
-            ],
+            "enum": ["position"],
             "example": "position"
           }
         }
@@ -2786,9 +2644,7 @@
           "query_type": {
             "description": "Type of EDR query",
             "type": "string",
-            "enum": [
-              "radius"
-            ],
+            "enum": ["radius"],
             "example": "radius"
           },
           "within_units": {
@@ -2827,9 +2683,7 @@
           "query_type": {
             "description": "Type of EDR query",
             "type": "string",
-            "enum": [
-              "area"
-            ],
+            "enum": ["area"],
             "example": "area"
           }
         }
@@ -2856,16 +2710,12 @@
             "$ref": "#/components/schemas/DataQuery"
           }
         ],
-        "required": [
-          "height_units"
-        ],
+        "required": ["height_units"],
         "properties": {
           "query_type": {
             "description": "Type of EDR query",
             "type": "string",
-            "enum": [
-              "cube"
-            ],
+            "enum": ["cube"],
             "example": "cube"
           },
           "height_units": {
@@ -2904,9 +2754,7 @@
           "query_type": {
             "description": "Type of EDR query",
             "type": "string",
-            "enum": [
-              "trajectory"
-            ],
+            "enum": ["trajectory"],
             "example": "trajectory"
           }
         }
@@ -2933,17 +2781,12 @@
             "$ref": "#/components/schemas/DataQuery"
           }
         ],
-        "required": [
-          "width_units",
-          "height_units"
-        ],
+        "required": ["width_units", "height_units"],
         "properties": {
           "query_type": {
             "description": "Type of EDR query",
             "type": "string",
-            "enum": [
-              "corridor"
-            ],
+            "enum": ["corridor"],
             "example": "corridor"
           },
           "width_units": {
@@ -2990,9 +2833,7 @@
           "query_type": {
             "description": "Type of EDR query",
             "type": "string",
-            "enum": [
-              "locations"
-            ],
+            "enum": ["locations"],
             "example": "locations"
           }
         }
@@ -3030,9 +2871,7 @@
           "query_type": {
             "description": "Type of EDR query",
             "type": "string",
-            "enum": [
-              "items"
-            ],
+            "enum": ["items"],
             "example": "items"
           }
         }
@@ -3070,9 +2909,7 @@
           "query_type": {
             "description": "Instances of collection",
             "type": "string",
-            "enum": [
-              "instances"
-            ],
+            "enum": ["instances"],
             "example": "instances"
           }
         }
@@ -3099,20 +2936,13 @@
         "description": "definition of data units",
         "anyOf": [
           {
-            "required": [
-              "label"
-            ]
+            "required": ["label"]
           },
           {
-            "required": [
-              "symbol"
-            ]
+            "required": ["symbol"]
           },
           {
-            "required": [
-              "label",
-              "symbol"
-            ]
+            "required": ["label", "symbol"]
           }
         ],
         "properties": {
@@ -3127,10 +2957,7 @@
               {
                 "type": "object",
                 "description": "Information about the symbol used to describe the units",
-                "required": [
-                  "value",
-                  "type"
-                ],
+                "required": ["value", "type"],
                 "properties": {
                   "value": {
                     "description": "representation of the units symbol",
@@ -3167,9 +2994,7 @@
         "type": "object",
         "title": "name of property",
         "description": "Description of the property",
-        "required": [
-          "label"
-        ],
+        "required": ["label"],
         "properties": {
           "id": {
             "description": "URI linking to an external registry which contains the definitive definition of\nthe observed property",
@@ -3192,10 +3017,7 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": [
-                "id",
-                "label"
-              ],
+              "required": ["id", "label"],
               "properties": {
                 "id": {
                   "description": "URI linking to an external registry which contains the definitive definition of\nthe observed property",
@@ -3218,9 +3040,7 @@
                     },
                     {
                       "type": "object",
-                      "required": [
-                        "en"
-                      ],
+                      "required": ["en"],
                       "properties": {
                         "en": {
                           "type": "string"
@@ -3242,16 +3062,11 @@
         "type": "object",
         "title": "Parameter name",
         "description": "Definition of data parameter",
-        "required": [
-          "type",
-          "observedProperty"
-        ],
+        "required": ["type", "observedProperty"],
         "properties": {
           "type": {
             "description": "type",
-            "enum": [
-              "Parameter"
-            ]
+            "enum": ["Parameter"]
           },
           "description": {
             "type": "string"
@@ -3262,11 +3077,7 @@
           "dataType": {
             "description": "Data type of returned parameter",
             "type": "string",
-            "enum": [
-              "integer",
-              "float",
-              "string"
-            ]
+            "enum": ["integer", "float", "string"]
           },
           "unit": {
             "$ref": "#/components/schemas/units"
@@ -3301,9 +3112,7 @@
             "type": "object",
             "title": "Parameter measurement approach",
             "description": "Approach to calculating the data values",
-            "required": [
-              "method"
-            ],
+            "required": ["method"],
             "properties": {
               "method": {
                 "type": "string",
@@ -3491,10 +3300,7 @@
       },
       "collections": {
         "type": "object",
-        "required": [
-          "links",
-          "collections"
-        ],
+        "required": ["links", "collections"],
         "properties": {
           "links": {
             "type": "array",
@@ -3522,9 +3328,7 @@
           "dataType": {
             "type": "string",
             "not": {
-              "enum": [
-                "primitive"
-              ]
+              "enum": ["primitive"]
             }
           },
           "values": {
@@ -3545,9 +3349,7 @@
             "minItems": 2
           }
         },
-        "required": [
-          "values"
-        ]
+        "required": ["values"]
       },
       "numericValuesAxis": {
         "description": "Axis defined by list of numeric axis values and optional bounds",
@@ -3586,11 +3388,7 @@
             "minimum": 1
           }
         },
-        "required": [
-          "start",
-          "stop",
-          "num"
-        ],
+        "required": ["start", "stop", "num"],
         "additionalProperties": false
       },
       "numericAxis": {
@@ -3637,9 +3435,7 @@
             "properties": {
               "dataType": {
                 "type": "string",
-                "enum": [
-                  "tuple"
-                ]
+                "enum": ["tuple"]
               },
               "values": {
                 "items": {
@@ -3660,11 +3456,7 @@
               },
               "coordinates": {}
             },
-            "required": [
-              "dataType",
-              "values",
-              "coordinates"
-            ],
+            "required": ["dataType", "values", "coordinates"],
             "additionalProperties": false
           }
         ]
@@ -3683,9 +3475,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "oneOf": [
           {
             "description": "Temporal reference system",
@@ -3697,9 +3487,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "calendar"
-            ]
+            "required": ["calendar"]
           },
           {
             "description": "An identifier-based reference system",
@@ -3726,9 +3514,7 @@
                     "$ref": "#/components/schemas/i18n"
                   }
                 },
-                "required": [
-                  "label"
-                ]
+                "required": ["label"]
               },
               "identifiers": {
                 "type": "object",
@@ -3745,15 +3531,11 @@
                       "$ref": "#/components/schemas/i18n"
                     }
                   },
-                  "required": [
-                    "label"
-                  ]
+                  "required": ["label"]
                 }
               }
             },
-            "required": [
-              "targetConcept"
-            ]
+            "required": ["targetConcept"]
           }
         ]
       },
@@ -3772,10 +3554,7 @@
             "$ref": "#/components/schemas/referenceSystem"
           }
         },
-        "required": [
-          "coordinates",
-          "system"
-        ]
+        "required": ["coordinates", "system"]
       },
       "domain": {
         "description": "A Domain, which defines a set of positions and their extent in one or more referencing systems",
@@ -3783,9 +3562,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Domain"
-            ]
+            "enum": ["Domain"]
           },
           "domainType": {
             "type": "string"
@@ -3809,10 +3586,7 @@
                     "$ref": "#/components/schemas/stringValuesAxis"
                   }
                 },
-                "required": [
-                  "x",
-                  "y"
-                ]
+                "required": ["x", "y"]
               },
               {
                 "description": "Trajectory domain: mandatory composite axis and optional z axis",
@@ -3826,9 +3600,7 @@
                         "$ref": "#/components/schemas/numericAxis"
                       }
                     },
-                    "required": [
-                      "composite"
-                    ]
+                    "required": ["composite"]
                   }
                 }
               }
@@ -3841,10 +3613,7 @@
             }
           }
         },
-        "required": [
-          "type",
-          "axes"
-        ]
+        "required": ["type", "axes"]
       },
       "ndArray": {
         "type": "object",
@@ -3852,16 +3621,10 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "NdArray"
-            ]
+            "enum": ["NdArray"]
           },
           "dataType": {
-            "enum": [
-              "float",
-              "integer",
-              "string"
-            ]
+            "enum": ["float", "integer", "string"]
           },
           "shape": {
             "type": "array",
@@ -3925,17 +3688,10 @@
                 "minItems": 1
               }
             },
-            "required": [
-              "shape",
-              "axisNames"
-            ]
+            "required": ["shape", "axisNames"]
           }
         ],
-        "required": [
-          "type",
-          "dataType",
-          "values"
-        ]
+        "required": ["type", "dataType", "values"]
       },
       "observedProperty": {
         "type": "object",
@@ -3965,17 +3721,12 @@
                   "$ref": "#/components/schemas/i18n"
                 }
               },
-              "required": [
-                "id",
-                "label"
-              ]
+              "required": ["id", "label"]
             },
             "minItems": 1
           }
         },
-        "required": [
-          "label"
-        ]
+        "required": ["label"]
       },
       "unit": {
         "type": "object",
@@ -4002,24 +3753,17 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "type",
-                  "value"
-                ]
+                "required": ["type", "value"]
               }
             ]
           }
         },
         "anyOf": [
           {
-            "required": [
-              "label"
-            ]
+            "required": ["label"]
           },
           {
-            "required": [
-              "symbol"
-            ]
+            "required": ["symbol"]
           }
         ]
       },
@@ -4033,9 +3777,7 @@
           "type": {
             "description": "Type of the parameter object, SHALL be \"Parameter\"",
             "type": "string",
-            "enum": [
-              "Parameter"
-            ]
+            "enum": ["Parameter"]
           },
           "description": {
             "$ref": "#/components/schemas/i18n"
@@ -4064,27 +3806,18 @@
             }
           }
         },
-        "required": [
-          "type",
-          "observedProperty"
-        ]
+        "required": ["type", "observedProperty"]
       },
       "coverageJSON": {
         "type": "object",
         "title": "CoverageJSON",
         "description": "A geospatial coverage interchange format based on JavaScript Object Notation (JSON)",
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "properties": {
           "type": {
             "description": "Coverage domain type",
             "type": "string",
-            "enum": [
-              "Coverage",
-              "CoverageCollection",
-              "Domain"
-            ]
+            "enum": ["Coverage", "CoverageCollection", "Domain"]
           },
           "domainType": {
             "type": "string"
@@ -4093,18 +3826,12 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": [
-                "type",
-                "domain",
-                "ranges"
-              ],
+              "required": ["type", "domain", "ranges"],
               "properties": {
                 "type": {
                   "description": "Coverage domain type",
                   "type": "string",
-                  "enum": [
-                    "Coverage"
-                  ]
+                  "enum": ["Coverage"]
                 },
                 "domain": {
                   "$ref": "#/components/schemas/domain"
@@ -4139,16 +3866,11 @@
       },
       "pointGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "coordinates"
-        ],
+        "required": ["type", "coordinates"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Point"
-            ]
+            "enum": ["Point"]
           },
           "coordinates": {
             "type": "array",
@@ -4161,16 +3883,11 @@
       },
       "multipointGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "coordinates"
-        ],
+        "required": ["type", "coordinates"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "MultiPoint"
-            ]
+            "enum": ["MultiPoint"]
           },
           "coordinates": {
             "type": "array",
@@ -4186,19 +3903,11 @@
       },
       "linestringGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "coordinates"
-        ],
+        "required": ["type", "coordinates"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "LineString",
-              "LineStringM",
-              "LineStringZ",
-              "LineStringZM"
-            ]
+            "enum": ["LineString", "LineStringM", "LineStringZ", "LineStringZM"]
           },
           "coordinates": {
             "type": "array",
@@ -4219,16 +3928,11 @@
       },
       "multilinestringGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "coordinates"
-        ],
+        "required": ["type", "coordinates"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "MultiLineString"
-            ]
+            "enum": ["MultiLineString"]
           },
           "coordinates": {
             "type": "array",
@@ -4248,16 +3952,11 @@
       },
       "polygonGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "coordinates"
-        ],
+        "required": ["type", "coordinates"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Polygon"
-            ]
+            "enum": ["Polygon"]
           },
           "coordinates": {
             "type": "array",
@@ -4277,16 +3976,11 @@
       },
       "multipolygonGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "coordinates"
-        ],
+        "required": ["type", "coordinates"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "MultiPolygon"
-            ]
+            "enum": ["MultiPolygon"]
           },
           "coordinates": {
             "type": "array",
@@ -4309,16 +4003,11 @@
       },
       "geometrycollectionGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "geometries"
-        ],
+        "required": ["type", "geometries"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "GeometryCollection"
-            ]
+            "enum": ["GeometryCollection"]
           },
           "geometries": {
             "type": "array",
@@ -4355,19 +4044,11 @@
           {
             "datetime": "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z",
             "label": "Monitoring site name",
-            "parameter-name": [
-              "velocity",
-              "temperature"
-            ],
+            "parameter-name": ["velocity", "temperature"],
             "edrqueryendpoint": "https://example.org/api/collections/collection/locations/location_123"
           }
         ],
-        "required": [
-          "datetime",
-          "parameter-name",
-          "label",
-          "edrqueryendpoint"
-        ],
+        "required": ["datetime", "parameter-name", "label", "edrqueryendpoint"],
         "properties": {
           "datetime": {
             "type": "string",
@@ -4406,17 +4087,11 @@
       },
       "featureGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "geometry",
-          "properties"
-        ],
+        "required": ["type", "geometry", "properties"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Feature"
-            ]
+            "enum": ["Feature"]
           },
           "geometry": {
             "oneOf": [
@@ -4478,16 +4153,11 @@
       },
       "edrFeatureCollectionGeoJSON": {
         "type": "object",
-        "required": [
-          "type",
-          "features"
-        ],
+        "required": ["type", "features"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "FeatureCollection"
-            ]
+            "enum": ["FeatureCollection"]
           },
           "features": {
             "type": "array",
@@ -4524,10 +4194,7 @@
       },
       "instances": {
         "type": "object",
-        "required": [
-          "links",
-          "instances"
-        ],
+        "required": ["links", "instances"],
         "properties": {
           "links": {
             "type": "array",
@@ -4732,9 +4399,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "coords"
-              ],
+              "required": ["coords"],
               "properties": {
                 "coords": {
                   "description": "Well Known Text Point definition",
@@ -4771,11 +4436,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "coords",
-                "within",
-                "within-units"
-              ],
+              "required": ["coords", "within", "within-units"],
               "properties": {
                 "coords": {
                   "description": "Well Known Text Point definition",
@@ -4818,9 +4479,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "coords"
-              ],
+              "required": ["coords"],
               "properties": {
                 "coords": {
                   "description": "Well Known Text Polygon definition",
@@ -4863,9 +4522,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "bbox"
-              ],
+              "required": ["bbox"],
               "properties": {
                 "bbox": {
                   "type": "string"
@@ -4898,9 +4555,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "coords"
-              ],
+              "required": ["coords"],
               "properties": {
                 "coords": {
                   "description": "Well Known Text LineString definition",

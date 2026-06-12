@@ -22,9 +22,7 @@
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Landing Page"
-        ],
+        "tags": ["Landing Page"],
         "operationId": "getLandingPage",
         "summary": "Retrieve the OGC API landing page for this service.",
         "parameters": [
@@ -47,9 +45,7 @@
     },
     "/conformance": {
       "get": {
-        "tags": [
-          "Conformance"
-        ],
+        "tags": ["Conformance"],
         "operationId": "getConformance",
         "summary": "Retrieve the set of OGC API conformance classes that are supported by this service.",
         "parameters": [
@@ -72,9 +68,7 @@
     },
     "/api": {
       "get": {
-        "tags": [
-          "API"
-        ],
+        "tags": ["API"],
         "operationId": "getAPI",
         "summary": "Retrieve this API definition.",
         "parameters": [
@@ -97,9 +91,7 @@
     },
     "/api/all-collections": {
       "get": {
-        "tags": [
-          "API"
-        ],
+        "tags": ["API"],
         "operationId": "getAPICollections",
         "summary": "Retrieve the list of collections available from this API implementation & deployment.",
         "parameters": [
@@ -125,9 +117,7 @@
     },
     "/api/coverage-collections": {
       "get": {
-        "tags": [
-          "API"
-        ],
+        "tags": ["API"],
         "operationId": "getAPICoverageCollections",
         "summary": "Retrieve the list of coverages collections available from this API implementation & deployment.",
         "parameters": [
@@ -153,9 +143,7 @@
     },
     "/api/vectorTiles-collections": {
       "get": {
-        "tags": [
-          "API"
-        ],
+        "tags": ["API"],
         "operationId": "getAPIVectorTileCollections",
         "summary": "Retrieve the list of collections supporting vector tiles available from this API implementation & deployment.",
         "parameters": [
@@ -181,9 +169,7 @@
     },
     "/api/tileMatrixSets": {
       "get": {
-        "tags": [
-          "API"
-        ],
+        "tags": ["API"],
         "operationId": "getAPITileMatrixSets",
         "summary": "Retrieve the list of shared TileMatrixSets available from this API implementation & deployment.",
         "parameters": [
@@ -209,9 +195,7 @@
     },
     "/api/styles": {
       "get": {
-        "tags": [
-          "API"
-        ],
+        "tags": ["API"],
         "operationId": "getAPIStyles",
         "summary": "Retrieve the list of dataset styles available from this API implementation & deployment.",
         "parameters": [
@@ -237,9 +221,7 @@
     },
     "/collections": {
       "get": {
-        "tags": [
-          "Data Collections"
-        ],
+        "tags": ["Data Collections"],
         "operationId": "getCollectionsList",
         "summary": "Retrieve the list of geospatial data collections available from this service.",
         "parameters": [
@@ -298,9 +280,7 @@
     },
     "/collections/{collectionId}": {
       "get": {
-        "tags": [
-          "Data Collections"
-        ],
+        "tags": ["Data Collections"],
         "operationId": "getCollection",
         "summary": "Retrieve the description of a collection available from this service.",
         "parameters": [
@@ -320,9 +300,7 @@
     },
     "/tileMatrixSets": {
       "get": {
-        "tags": [
-          "Tiling Schemes"
-        ],
+        "tags": ["Tiling Schemes"],
         "summary": "Retrieve the list of available tiling schemes (tile matrix sets)",
         "operationId": "getTileMatrixSetsList",
         "parameters": [
@@ -345,9 +323,7 @@
     },
     "/tileMatrixSets/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Tiling Schemes"
-        ],
+        "tags": ["Tiling Schemes"],
         "summary": "Retrieve the definition of the specified tiling scheme (tile matrix set)",
         "operationId": "getTileMatrixSet",
         "parameters": [
@@ -383,9 +359,7 @@
     },
     "/tiles": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve a list of available vector tilesets for the dataset",
         "operationId": ".dataset.vector.getTileSetsList",
         "parameters": [
@@ -411,9 +385,7 @@
     },
     "/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve the vector tileset metadata for the whole dataset and the specified tiling scheme (tile matrix set)",
         "operationId": ".dataset.vector.getTileSet",
         "parameters": [
@@ -445,9 +417,7 @@
     },
     "/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve a vector tile including one or more collections from the dataset.",
         "operationId": ".dataset.vector.getTile",
         "parameters": [
@@ -503,9 +473,7 @@
     },
     "/styles/{styleId}/tiles": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve the list of vector tilesets intended for use with a specified style for the whole dataset",
         "operationId": ".dataset.style.vector.getTileSetsList",
         "parameters": [
@@ -534,9 +502,7 @@
     },
     "/styles/{styleId}/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve a vector tileset intended for use with a specified style of the whole dataset for the specified tiling scheme (tile matrix set)",
         "operationId": ".dataset.style.vector.getTileSet",
         "parameters": [
@@ -571,9 +537,7 @@
     },
     "/styles/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve vector tiles intended for use with a specified style",
         "operationId": ".dataset.style.vector.getTile",
         "parameters": [
@@ -632,9 +596,7 @@
     },
     "/collections/{collectionId}/tiles": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve a list of available vector tilesets for the specified collection.",
         "operationId": ".collection.vector.getTileSetsList",
         "parameters": [
@@ -663,9 +625,7 @@
     },
     "/collections/{collectionId}/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve the vector tileset metadata for the specified collection and tiling scheme (tile matrix set)",
         "operationId": ".collection.vector.getTileSet",
         "parameters": [
@@ -700,9 +660,7 @@
     },
     "/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve a vector tile from a collection.",
         "operationId": ".collection.vector.getTile",
         "parameters": [
@@ -761,9 +719,7 @@
     },
     "/collections/{collectionId}/styles/{styleId}/tiles": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve a list of vector tilesets for the specified collection intended for use with a specified style",
         "operationId": ".collection.style.vector.getTileSetsList",
         "parameters": [
@@ -795,9 +751,7 @@
     },
     "/collections/{collectionId}/styles/{styleId}/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve the vector tileset metadata for the specified collection, style and tiling scheme (tile matrix set).",
         "operationId": ".collection.style.vector.getTileSet",
         "parameters": [
@@ -835,9 +789,7 @@
     },
     "/collections/{collectionId}/styles/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Vector Tiles"
-        ],
+        "tags": ["Vector Tiles"],
         "summary": "Retrieve vector tiles for a specified collection, intended for use with a specified style",
         "operationId": ".collection.style.vector.getTile",
         "parameters": [
@@ -905,9 +857,7 @@
     },
     "/collections/{collectionId}/coverage/tiles": {
       "get": {
-        "tags": [
-          "Coverage Tiles"
-        ],
+        "tags": ["Coverage Tiles"],
         "summary": "Retrieve the list of available coverage tilesets for the specified collection.",
         "operationId": ".collection.coverage.getTileSetsList",
         "parameters": [
@@ -936,9 +886,7 @@
     },
     "/collections/{collectionId}/coverage/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Coverage Tiles"
-        ],
+        "tags": ["Coverage Tiles"],
         "summary": "Retrieve the coverage tileset metadata for the specified collection and tiling scheme (tile matrix set)",
         "operationId": ".collection.coverage.getTileSet",
         "parameters": [
@@ -973,9 +921,7 @@
     },
     "/collections/{collectionId}/coverage/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Coverage Tiles"
-        ],
+        "tags": ["Coverage Tiles"],
         "summary": "Retrieve coverage tiles",
         "operationId": ".collection.coverage.getTile",
         "parameters": [
@@ -1034,9 +980,7 @@
     },
     "/map/tiles": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve the list of all default map tilesets for the whole dataset",
         "operationId": ".dataset.map.getTileSetsList",
         "parameters": [
@@ -1062,9 +1006,7 @@
     },
     "/map/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a default map tileset of the whole dataset for the specified tiling scheme (tile matrix set)",
         "operationId": ".dataset.map.getTileSet",
         "parameters": [
@@ -1096,9 +1038,7 @@
     },
     "/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a default map tile of the whole dataset",
         "operationId": ".dataset.map.getTile",
         "parameters": [
@@ -1160,9 +1100,7 @@
     },
     "/styles/{styleId}/map/tiles": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve the list of styled map tilesets for the whole dataset",
         "operationId": ".dataset.style.map.getTileSetsList",
         "parameters": [
@@ -1191,9 +1129,7 @@
     },
     "/styles/{styleId}/map/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a styled map tileset of the whole dataset for the specified tiling scheme (tile matrix set)",
         "operationId": ".dataset.style.map.getTileSet",
         "parameters": [
@@ -1228,9 +1164,7 @@
     },
     "/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a styled map tiles",
         "operationId": ".dataset.style.map.getTile",
         "parameters": [
@@ -1295,9 +1229,7 @@
     },
     "/collections/{collectionId}/map/tiles": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a list of all map tilesets for specified collection.",
         "operationId": ".collection.map.getTileSetsList",
         "parameters": [
@@ -1326,9 +1258,7 @@
     },
     "/collections/{collectionId}/map/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a map tile set metadata for the specified collection and tiling scheme (tile matrix set)",
         "operationId": ".collection.map.getTileSet",
         "parameters": [
@@ -1363,9 +1293,7 @@
     },
     "/collections/{collectionId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a map tile from the specified collection",
         "operationId": ".collection.map.getTile",
         "parameters": [
@@ -1430,9 +1358,7 @@
     },
     "/collections/{collectionId}/styles/{styleId}/map/tiles": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a list of styled map tilesets for the specified collection",
         "operationId": ".collection.style.map.getTileSetsList",
         "parameters": [
@@ -1464,9 +1390,7 @@
     },
     "/collections/{collectionId}/styles/{styleId}/map/tiles/{tileMatrixSetId}": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve the map tileset metadata for the specified collection, style and tiling scheme (tile matrix set).",
         "operationId": ".collection.style.map.getTileSet",
         "parameters": [
@@ -1504,9 +1428,7 @@
     },
     "/collections/{collectionId}/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}": {
       "get": {
-        "tags": [
-          "Map Tiles"
-        ],
+        "tags": ["Map Tiles"],
         "summary": "Retrieve a map tile for a specified collection and style",
         "operationId": ".collection.style.map.getTile",
         "parameters": [
@@ -1577,9 +1499,7 @@
     "schemas": {
       "confClasses": {
         "type": "object",
-        "required": [
-          "conformsTo"
-        ],
+        "required": ["conformsTo"],
         "properties": {
           "conformsTo": {
             "type": "array",
@@ -1591,10 +1511,7 @@
       },
       "link": {
         "type": "object",
-        "required": [
-          "href",
-          "rel"
-        ],
+        "required": ["href", "rel"],
         "properties": {
           "href": {
             "type": "string",
@@ -1637,9 +1554,7 @@
       },
       "landingPage": {
         "type": "object",
-        "required": [
-          "links"
-        ],
+        "required": ["links"],
         "properties": {
           "title": {
             "type": "string",
@@ -1668,9 +1583,7 @@
         "title": "Exception Schema",
         "description": "JSON schema for exceptions based on RFC 7807",
         "type": "object",
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "properties": {
           "type": {
             "type": "string"
@@ -1691,10 +1604,7 @@
       },
       "collections": {
         "type": "object",
-        "required": [
-          "links",
-          "collections"
-        ],
+        "required": ["links", "collections"],
         "properties": {
           "links": {
             "type": "array",
@@ -1726,10 +1636,7 @@
       },
       "collectionInfo": {
         "type": "object",
-        "required": [
-          "id",
-          "links"
-        ],
+        "required": ["id", "links"],
         "properties": {
           "id": {
             "type": "string",
@@ -1804,9 +1711,7 @@
             "items": {
               "type": "string"
             },
-            "default": [
-              "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
-            ],
+            "default": ["http://www.opengis.net/def/crs/OGC/1.3/CRS84"],
             "example": [
               "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
               "http://www.opengis.net/def/crs/EPSG/0/4326"
@@ -1874,12 +1779,7 @@
                   "items": {
                     "type": "number"
                   },
-                  "example": [
-                    -180,
-                    -90,
-                    180,
-                    90
-                  ]
+                  "example": [-180, -90, 180, 90]
                 }
               },
               "crs": {
@@ -1914,12 +1814,7 @@
                           }
                         ]
                       },
-                      "example": [
-                        2,
-                        10,
-                        80,
-                        100
-                      ]
+                      "example": [2, 10, 80, 100]
                     },
                     "cellsCount": {
                       "description": "Number of samples available along the dimension for data organized as a regular grid.\nFor values representing the whole area of contiguous cells spanning _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_.\nFor values representing infinitely small point cells spaced by _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_ + 1.",
@@ -1962,18 +1857,13 @@
                     "format": "date-time",
                     "nullable": true
                   },
-                  "example": [
-                    "2011-11-11T12:22:11Z",
-                    null
-                  ]
+                  "example": ["2011-11-11T12:22:11Z", null]
                 }
               },
               "trs": {
                 "description": "Coordinate reference system of the coordinates in the temporal extent\n(property `interval`). The default reference system is the Gregorian calendar.\nIn the Core this is the only supported temporal coordinate reference system.\nExtensions may support additional temporal coordinate reference systems and add\nadditional enum values.",
                 "type": "string",
-                "enum": [
-                  "http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"
-                ],
+                "enum": ["http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"],
                 "default": "http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"
               },
               "grid": {
@@ -2034,22 +1924,13 @@
               "type": "object",
               "oneOf": [
                 {
-                  "required": [
-                    "interval",
-                    "crs"
-                  ]
+                  "required": ["interval", "crs"]
                 },
                 {
-                  "required": [
-                    "interval",
-                    "trs"
-                  ]
+                  "required": ["interval", "trs"]
                 },
                 {
-                  "required": [
-                    "interval",
-                    "vrs"
-                  ]
+                  "required": ["interval", "vrs"]
                 }
               ],
               "properties": {
@@ -2073,11 +1954,7 @@
                         }
                       ]
                     },
-                    "example": [
-                      "2011-11-11T12:22:11Z",
-                      32.5,
-                      null
-                    ]
+                    "example": ["2011-11-11T12:22:11Z", 32.5, null]
                   }
                 },
                 "crs": {
@@ -2111,12 +1988,7 @@
                           }
                         ]
                       },
-                      "example": [
-                        2,
-                        10,
-                        80,
-                        100
-                      ]
+                      "example": [2, 10, 80, 100]
                     },
                     "cellsCount": {
                       "description": "Number of samples available along the dimension for data organized as a regular grid.\nFor values representing the whole area of contiguous cells spanning _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_.\nFor values representing infinitely small point cells spaced by _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_ + 1.",
@@ -2134,10 +2006,7 @@
                           "type": "number"
                         }
                       ],
-                      "example": [
-                        "PT1H",
-                        0.0006866455078
-                      ]
+                      "example": ["PT1H", 0.0006866455078]
                     }
                   }
                 }
@@ -2157,9 +2026,7 @@
             "type": "object",
             "oneOf": [
               {
-                "required": [
-                  "uri"
-                ],
+                "required": ["uri"],
                 "properties": {
                   "uri": {
                     "description": "Reference to one coordinate reference system (CRS)",
@@ -2169,9 +2036,7 @@
                 }
               },
               {
-                "required": [
-                  "wkt"
-                ],
+                "required": ["wkt"],
                 "properties": {
                   "wkt": {
                     "allOf": [
@@ -2186,9 +2051,7 @@
                 }
               },
               {
-                "required": [
-                  "referenceSystem"
-                ],
+                "required": ["referenceSystem"],
                 "properties": {
                   "referenceSystem": {
                     "description": "A reference system data structure as defined in the MD_ReferenceSystem of the ISO 19115",
@@ -2207,11 +2070,7 @@
           },
           {
             "type": "string",
-            "enum": [
-              "map",
-              "vector",
-              "coverage"
-            ]
+            "enum": ["map", "vector", "coverage"]
           }
         ]
       },
@@ -2237,11 +2096,7 @@
         "title": "Tile Set Metadata",
         "description": "A resource describing a tileset based on the OGC TileSet Metadata Standard. At least one of the 'TileMatrixSet',  or a link with 'rel' http://www.opengis.net/def/rel/ogc/1.0/tiling-scheme",
         "type": "object",
-        "required": [
-          "dataType",
-          "crs",
-          "links"
-        ],
+        "required": ["dataType", "crs", "links"],
         "properties": {
           "title": {
             "description": "A title for this tileset",
@@ -2299,10 +2154,7 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": [
-                "id",
-                "dataType"
-              ],
+              "required": ["id", "dataType"],
               "properties": {
                 "title": {
                   "description": "Title of this tile matrix set, normally used for display to a human",
@@ -2453,16 +2305,11 @@
                     {
                       "description": "Attributes of the features or rangetypes of a coverage. Defined by a subset of the JSON Schema for the properties of a feature",
                       "type": "object",
-                      "required": [
-                        "type",
-                        "properties"
-                      ],
+                      "required": ["type", "properties"],
                       "properties": {
                         "type": {
                           "type": "string",
-                          "enum": [
-                            "object"
-                          ]
+                          "enum": ["object"]
                         },
                         "required": {
                           "description": "Implements 'multiplicity' by citing property 'name' defined as 'additionalProperties'",
@@ -2593,9 +2440,7 @@
               },
               {
                 "type": "object",
-                "required": [
-                  "coordinates"
-                ],
+                "required": ["coordinates"],
                 "properties": {
                   "coordinates": {
                     "type": "array",
@@ -2638,9 +2483,7 @@
               },
               {
                 "type": "object",
-                "required": [
-                  "id"
-                ],
+                "required": ["id"],
                 "properties": {
                   "id": {
                     "description": "An identifier for this style. Implementation of 'identifier'",
@@ -2741,11 +2584,7 @@
         "title": "Tile Set Metadata item",
         "description": "A minimal tileset element for use within a list of tilesets linking to full description of those tilesets.",
         "type": "object",
-        "required": [
-          "dataType",
-          "links",
-          "crs"
-        ],
+        "required": ["dataType", "links", "crs"],
         "properties": {
           "title": {
             "description": "A title for this tileset",
@@ -2789,10 +2628,7 @@
         "title": "Tile Matrix Set Definition",
         "description": "A definition of a tile matrix set following the Tile Matrix Set standard. For tileset metadata, such a description (in `tileMatrixSet` property) is only required for offline use, as an alternative to a link with a `http://www.opengis.net/def/rel/ogc/1.0/tiling-scheme` relation type.",
         "type": "object",
-        "required": [
-          "crs",
-          "tileMatrices"
-        ],
+        "required": ["crs", "tileMatrices"],
         "properties": {
           "title": {
             "description": "Title of this tile matrix set, normally used for display to a human",
@@ -2897,10 +2733,7 @@
                 "cornerOfOrigin": {
                   "description": "The corner of the tile matrix (_topLeft_ or _bottomLeft_) used as the origin for numbering tile rows and columns. This corner is also a corner of the (0, 0) tile.",
                   "type": "string",
-                  "enum": [
-                    "topLeft",
-                    "bottomLeft"
-                  ],
+                  "enum": ["topLeft", "bottomLeft"],
                   "default": "topLeft"
                 },
                 "pointOfOrigin": {
@@ -2947,11 +2780,7 @@
                   "items": {
                     "description": "Variable Matrix Width data structure",
                     "type": "object",
-                    "required": [
-                      "coalesce",
-                      "minTileRow",
-                      "maxTileRow"
-                    ],
+                    "required": ["coalesce", "minTileRow", "maxTileRow"],
                     "properties": {
                       "coalesce": {
                         "description": "Number of tiles in width that coalesce in a single tile for these rows",
@@ -2986,9 +2815,7 @@
         "title": "Tile Matrix Set Item",
         "description": "A minimal tile matrix set element for use within a list of tile matrix sets linking to a full definition.",
         "type": "object",
-        "required": [
-          "links"
-        ],
+        "required": ["links"],
         "properties": {
           "id": {
             "description": "Optional local tile matrix set identifier, e.g. for use as unspecified `{tileMatrixSetId}` parameter. Implementation of 'identifier'",
@@ -3067,10 +2894,7 @@
       "2DBoundingBox": {
         "description": "Minimum bounding rectangle surrounding a 2D resource in the CRS indicated elsewhere",
         "type": "object",
-        "required": [
-          "lowerLeft",
-          "upperRight"
-        ],
+        "required": ["lowerLeft", "upperRight"],
         "properties": {
           "lowerLeft": {
             "$ref": "#/components/schemas/2DPoint"
@@ -3094,33 +2918,22 @@
       "FeatureCollection": {
         "title": "GeoJSON FeatureCollection",
         "type": "object",
-        "required": [
-          "type",
-          "features"
-        ],
+        "required": ["type", "features"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "FeatureCollection"
-            ]
+            "enum": ["FeatureCollection"]
           },
           "features": {
             "type": "array",
             "items": {
               "title": "GeoJSON Feature",
               "type": "object",
-              "required": [
-                "type",
-                "properties",
-                "geometry"
-              ],
+              "required": ["type", "properties", "geometry"],
               "properties": {
                 "type": {
                   "type": "string",
-                  "enum": [
-                    "Feature"
-                  ]
+                  "enum": ["Feature"]
                 },
                 "id": {
                   "oneOf": [
@@ -3142,16 +2955,11 @@
                       "title": "GeoJSON Point",
                       "type": "object",
                       "nullable": true,
-                      "required": [
-                        "type",
-                        "coordinates"
-                      ],
+                      "required": ["type", "coordinates"],
                       "properties": {
                         "type": {
                           "type": "string",
-                          "enum": [
-                            "Point"
-                          ]
+                          "enum": ["Point"]
                         },
                         "coordinates": {
                           "type": "array",
@@ -3172,16 +2980,11 @@
                     {
                       "title": "GeoJSON LineString",
                       "type": "object",
-                      "required": [
-                        "type",
-                        "coordinates"
-                      ],
+                      "required": ["type", "coordinates"],
                       "properties": {
                         "type": {
                           "type": "string",
-                          "enum": [
-                            "LineString"
-                          ]
+                          "enum": ["LineString"]
                         },
                         "coordinates": {
                           "type": "array",
@@ -3206,16 +3009,11 @@
                     {
                       "title": "GeoJSON Polygon",
                       "type": "object",
-                      "required": [
-                        "type",
-                        "coordinates"
-                      ],
+                      "required": ["type", "coordinates"],
                       "properties": {
                         "type": {
                           "type": "string",
-                          "enum": [
-                            "Polygon"
-                          ]
+                          "enum": ["Polygon"]
                         },
                         "coordinates": {
                           "type": "array",
@@ -3243,16 +3041,11 @@
                     {
                       "title": "GeoJSON MultiPoint",
                       "type": "object",
-                      "required": [
-                        "type",
-                        "coordinates"
-                      ],
+                      "required": ["type", "coordinates"],
                       "properties": {
                         "type": {
                           "type": "string",
-                          "enum": [
-                            "MultiPoint"
-                          ]
+                          "enum": ["MultiPoint"]
                         },
                         "coordinates": {
                           "type": "array",
@@ -3276,16 +3069,11 @@
                     {
                       "title": "GeoJSON MultiLineString",
                       "type": "object",
-                      "required": [
-                        "type",
-                        "coordinates"
-                      ],
+                      "required": ["type", "coordinates"],
                       "properties": {
                         "type": {
                           "type": "string",
-                          "enum": [
-                            "MultiLineString"
-                          ]
+                          "enum": ["MultiLineString"]
                         },
                         "coordinates": {
                           "type": "array",
@@ -3313,16 +3101,11 @@
                     {
                       "title": "GeoJSON MultiPolygon",
                       "type": "object",
-                      "required": [
-                        "type",
-                        "coordinates"
-                      ],
+                      "required": ["type", "coordinates"],
                       "properties": {
                         "type": {
                           "type": "string",
-                          "enum": [
-                            "MultiPolygon"
-                          ]
+                          "enum": ["MultiPolygon"]
                         },
                         "coordinates": {
                           "type": "array",
@@ -3373,16 +3156,11 @@
       },
       "enumeration": {
         "type": "object",
-        "required": [
-          "type",
-          "enum"
-        ],
+        "required": ["type", "enum"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "enum"
-            ]
+            "enum": ["enum"]
           },
           "enum": {
             "type": "array",
@@ -3413,17 +3191,11 @@
       },
       "coverage-collections": {
         "type": "string",
-        "enum": [
-          "SRTM_ViewFinderPanorama",
-          "HRDEM-Ottawa",
-          "HRDEM-RedRiver"
-        ]
+        "enum": ["SRTM_ViewFinderPanorama", "HRDEM-Ottawa", "HRDEM-RedRiver"]
       },
       "styles": {
         "type": "string",
-        "enum": [
-          "default"
-        ]
+        "enum": ["default"]
       },
       "tileMatrixSets": {
         "type": "string",
@@ -3443,10 +3215,7 @@
         "required": false,
         "schema": {
           "type": "string",
-          "enum": [
-            "json",
-            "html"
-          ]
+          "enum": ["json", "html"]
         },
         "style": "form",
         "explode": false
@@ -3620,11 +3389,7 @@
         "required": false,
         "schema": {
           "type": "string",
-          "enum": [
-            "png",
-            "jpg",
-            "tiff"
-          ]
+          "enum": ["png", "jpg", "tiff"]
         },
         "style": "form",
         "explode": false
@@ -3636,10 +3401,7 @@
         "required": false,
         "schema": {
           "type": "string",
-          "enum": [
-            "mvt",
-            "json"
-          ]
+          "enum": ["mvt", "json"]
         },
         "style": "form",
         "explode": false
@@ -3651,11 +3413,7 @@
         "required": false,
         "schema": {
           "type": "string",
-          "enum": [
-            "tiff",
-            "netcdf",
-            "png"
-          ]
+          "enum": ["tiff", "netcdf", "png"]
         },
         "style": "form",
         "explode": false
@@ -3939,22 +3697,10 @@
                   "description": "Buildings in the city of Bonn.",
                   "extent": {
                     "spatial": {
-                      "bbox": [
-                        [
-                          7.01,
-                          50.63,
-                          7.22,
-                          50.78
-                        ]
-                      ]
+                      "bbox": [[7.01, 50.63, 7.22, 50.78]]
                     },
                     "temporal": {
-                      "interval": [
-                        [
-                          "2010-02-15T12:34:56Z",
-                          null
-                        ]
-                      ]
+                      "interval": [["2010-02-15T12:34:56Z", null]]
                     }
                   },
                   "links": [
@@ -4007,22 +3753,10 @@
               "description": "Buildings in the city of Bonn.",
               "extent": {
                 "spatial": {
-                  "bbox": [
-                    [
-                      7.01,
-                      50.63,
-                      7.22,
-                      50.78
-                    ]
-                  ]
+                  "bbox": [[7.01, 50.63, 7.22, 50.78]]
                 },
                 "temporal": {
-                  "interval": [
-                    [
-                      "2010-02-15T12:34:56Z",
-                      null
-                    ]
-                  ]
+                  "interval": [["2010-02-15T12:34:56Z", null]]
                 }
               },
               "links": [
@@ -4066,9 +3800,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "tilesets"
-              ],
+              "required": ["tilesets"],
               "properties": {
                 "links": {
                   "type": "array",

@@ -35,7 +35,9 @@ class FakeOgcPlugin(Plugin):
         return [FAKE_CONFORMANCE_CLASS]
 
     @hookimpl
-    def ogc_collection_metadata(self, collection_id: str, ds: xr.Dataset) -> Dict[str, Any]:
+    def ogc_collection_metadata(
+        self, collection_id: str, ds: xr.Dataset
+    ) -> Dict[str, Any]:
         return {
             "extent": {
                 "spatial": {
@@ -56,7 +58,9 @@ class FakeOgcPlugin(Plugin):
         }
 
     @hookimpl
-    def ogc_collection_dataqueries(self, collection_id: str, ds: xr.Dataset) -> Dict[str, Dict]:
+    def ogc_collection_dataqueries(
+        self, collection_id: str, ds: xr.Dataset
+    ) -> Dict[str, Dict]:
         return {
             "position": {
                 "link": {

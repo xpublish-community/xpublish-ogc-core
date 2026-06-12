@@ -1,9 +1,6 @@
 {
   "type": "object",
-  "required": [
-    "href",
-    "rel"
-  ],
+  "required": ["href", "rel"],
   "properties": {
     "href": {
       "type": "string",

@@ -1,38 +1,38 @@
+[build-system]
+build-backend = "uv_build"
+requires = [ "uv-build>=0.8.15,<0.9" ]
+
 [project]
 name = "xpublish-ogc-core"
 version = "0.1.0"
 description = "OGC API Common structure and support for OGC Xpublish plugins"
 readme = "README.md"
-authors = [
-    { name = "Alex Kerney", email = "abk@mac.com" }
-]
+authors = [ { name = "Alex Kerney", email = "abk@mac.com" } ]
 requires-python = ">=3.11"
-dependencies = [
-    "pydantic>=2",
-    "xpublish>=0.4.1"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
+dependencies = [ "pydantic>=2", "xpublish>=0.4.1" ]
+entry-points."xpublish.plugin".xpublish_ogc_core = "xpublish_ogc_core.plugin:OgcCorePlugin"
 
 [dependency-groups]
 dev = [
-    "cf-xarray",
-    "httpx",
-    "jsonschema",
-    "netcdf4",
-    "pooch",
-    "pytest",
-    "referencing",
-    "schemathesis>=4",
-    "uvicorn",
+  "cf-xarray",
+  "httpx",
+  "jsonschema",
+  "netcdf4",
+  "pooch",
+  "pytest",
+  "referencing",
+  "schemathesis>=4",
+  "uvicorn",
 ]
 
-[tool.pytest.ini_options]
-markers = [
-    "cite: official OGC CITE compliance suites run with TeamEngine in Docker (slow)",
+[tool.pytest]
+ini_options.markers = [
+  "cite: official OGC CITE compliance suites run with TeamEngine in Docker (slow)",
 ]
-
-[build-system]
-requires = ["uv_build>=0.8.15,<0.9.0"]
-build-backend = "uv_build"
-
-[project.entry-points."xpublish.plugin"]
-xpublish_ogc_core = "xpublish_ogc_core.plugin:OgcCorePlugin"

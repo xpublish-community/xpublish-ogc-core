@@ -42,7 +42,15 @@ def test_component_schema(name, document):
 
 @pytest.mark.parametrize(
     "name",
-    ["landingPage", "confClasses", "exception", "link", "collections", "collection", "extent"],
+    [
+        "landingPage",
+        "confClasses",
+        "exception",
+        "link",
+        "collections",
+        "collection",
+        "extent",
+    ],
 )
 def test_common_component_schema(name):
     """The Common document is standalone schema files, referenced by source URI."""
@@ -60,7 +68,9 @@ def test_common_validation_resolves_refs_between_files():
             "collections": [
                 {
                     "id": "air",
-                    "links": [{"href": "https://example.org/collections/air", "rel": "self"}],
+                    "links": [
+                        {"href": "https://example.org/collections/air", "rel": "self"}
+                    ],
                 },
             ],
         },

@@ -163,9 +163,7 @@ def validate_response(name: str, data: Any, document: str = DEFAULT_DOCUMENT) ->
         key=lambda error: list(error.absolute_path),
     )
     if errors:
-        details = "\n".join(
-            f"  {error.json_path}: {error.message}" for error in errors
-        )
+        details = "\n".join(f"  {error.json_path}: {error.message}" for error in errors)
         raise AssertionError(
             f"Response body does not validate against OGC component schema {name!r}:\n{details}",
         )

@@ -3,9 +3,7 @@
   "title": "Landing Page Schema",
   "description": "JSON schema for the OGC API - Common landing page",
   "type": "object",
-  "required": [
-    "links"
-  ],
+  "required": ["links"],
   "properties": {
     "title": {
       "title": "The title of the API.",
