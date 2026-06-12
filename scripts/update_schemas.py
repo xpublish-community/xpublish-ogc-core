@@ -35,8 +35,7 @@ BUNDLES = {
         "ogcapi-environmental-data-retrieval-1-oas30.bundled.json"
     ),
     "ogcapi-tiles-1.bundled.json": (
-        "https://schemas.opengis.net/ogcapi/tiles/part1/1.0/openapi/"
-        "ogcapi-tiles-1.bundled.json"
+        "https://schemas.opengis.net/ogcapi/tiles/part1/1.0/openapi/ogcapi-tiles-1.bundled.json"
     ),
 }
 
@@ -87,7 +86,7 @@ def rewrite_yaml_refs(node: Any) -> Any:
 
 def update_bundles() -> None:
     for filename, url in BUNDLES.items():
-        print(f"Downloading {url}")
+        print(f"Downloading {url}")  # noqa: T201
         with urllib.request.urlopen(url) as response:
             raw = response.read()
 
@@ -100,14 +99,14 @@ def update_bundles() -> None:
 
         target = SCHEMA_DIR / filename
         target.write_bytes(raw)
-        print(f"Wrote {target} ({len(raw)} bytes, OpenAPI {document.get('openapi')})")
+        print(f"Wrote {target} ({len(raw)} bytes, OpenAPI {document.get('openapi')})")  # noqa: T201
 
 
 def update_common() -> None:
     common_dir = SCHEMA_DIR / "common"
 
     for path, url in COMMON_SOURCES.items():
-        print(f"Downloading {url}")
+        print(f"Downloading {url}")  # noqa: T201
         with urllib.request.urlopen(url) as response:
             raw = response.read()
 
@@ -119,19 +118,17 @@ def update_common() -> None:
         target = common_dir / path
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(json.dumps(schema, indent=2) + "\n", encoding="utf-8")
-        print(f"Wrote {target}")
+        print(f"Wrote {target}")  # noqa: T201
 
     manifest = {
         "components": COMMON_COMPONENTS,
         # registered URIs are the converted .json siblings of the sources,
         # so the rewritten relative refs resolve within the registry
-        "resources": {
-            path: url.replace(".yaml", ".json") for path, url in COMMON_SOURCES.items()
-        },
+        "resources": {path: url.replace(".yaml", ".json") for path, url in COMMON_SOURCES.items()},
     }
     manifest_path = common_dir / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {manifest_path}")
+    print(f"Wrote {manifest_path}")  # noqa: T201
 
 
 def main() -> None:

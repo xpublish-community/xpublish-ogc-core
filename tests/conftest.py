@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 import pytest
 import xarray as xr
@@ -25,7 +25,7 @@ class FakeOgcPlugin(Plugin):
             "/collections/{collection_id}/fake",
             summary="A stub data query",
         )
-        def fake_query(collection_id: str) -> Dict[str, str]:
+        def fake_query(collection_id: str) -> dict[str, str]:
             return {"collection_id": collection_id}
 
         return router
@@ -35,9 +35,7 @@ class FakeOgcPlugin(Plugin):
         return [FAKE_CONFORMANCE_CLASS]
 
     @hookimpl
-    def ogc_collection_metadata(
-        self, collection_id: str, ds: xr.Dataset
-    ) -> Dict[str, Any]:
+    def ogc_collection_metadata(self, collection_id: str, ds: xr.Dataset) -> dict[str, Any]:
         return {
             "extent": {
                 "spatial": {
@@ -58,9 +56,7 @@ class FakeOgcPlugin(Plugin):
         }
 
     @hookimpl
-    def ogc_collection_dataqueries(
-        self, collection_id: str, ds: xr.Dataset
-    ) -> Dict[str, Dict]:
+    def ogc_collection_dataqueries(self, collection_id: str, ds: xr.Dataset) -> dict[str, dict]:
         return {
             "position": {
                 "link": {

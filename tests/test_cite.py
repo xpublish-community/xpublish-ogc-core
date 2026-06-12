@@ -62,8 +62,6 @@ def test_common_subset_of_edr_cite_suite(air_dataset):
     assert not unexpected, f"Unexpected CITE failures:\n{result.summary()}"
 
     fixed = KNOWN_FAILURES - result.failure_names()
-    assert not fixed, (
-        f"Known failures now pass, remove them from KNOWN_FAILURES: {sorted(fixed)}"
-    )
+    assert not fixed, f"Known failures now pass, remove them from KNOWN_FAILURES: {sorted(fixed)}"
 
     assert result.passed >= 9, f"Suite did not run as expected:\n{result.summary()}"

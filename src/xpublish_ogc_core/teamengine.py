@@ -30,8 +30,8 @@ import socket
 import subprocess
 import threading
 import time
+from collections.abc import Iterator
 from dataclasses import dataclass, field
-from typing import Iterator, Optional
 from xml.etree import ElementTree
 
 # the host as seen from inside a container, provided by Docker Desktop and
@@ -68,7 +68,7 @@ def free_port() -> int:
 
 
 @contextlib.contextmanager
-def serve_app(app, port: Optional[int] = None) -> Iterator[str]:
+def serve_app(app, port: int | None = None) -> Iterator[str]:
     """Serve an ASGI app over real HTTP in a background thread.
 
     Yields the app's base URL as seen from inside a Docker container, without
@@ -100,7 +100,7 @@ def serve_app(app, port: Optional[int] = None) -> Iterator[str]:
 @contextlib.contextmanager
 def teamengine_container(
     image: str,
-    port: Optional[int] = None,
+    port: int | None = None,
     startup_timeout: float = 600,
 ) -> Iterator[str]:
     """Run a TeamEngine CITE image, yielding its base REST URL once responsive.
@@ -170,7 +170,7 @@ class FailedTest:
 
 @dataclass
 class SuiteResult:
-    """Outcome of a TeamEngine suite run, parsed from TestNG results XML."""
+    """Outcome of a TeamEngine suite run, parsed from TestNG results XML."""  # codespell:ignore
 
     passed: int = 0
     failed: int = 0
@@ -184,14 +184,12 @@ class SuiteResult:
         lines = [
             f"{self.passed} passed, {self.failed} failed, {self.skipped} skipped",
         ]
-        lines.extend(
-            f"  FAIL {failure.name}: {failure.message}" for failure in self.failures
-        )
+        lines.extend(f"  FAIL {failure.name}: {failure.message}" for failure in self.failures)
         return "\n".join(lines)
 
 
 def parse_testng_results(xml_text: str) -> SuiteResult:
-    """Parse TeamEngine's TestNG results XML into a :class:`SuiteResult`."""
+    """Parse TeamEngine's TestNG results XML into a :class:`SuiteResult`."""  # codespell:ignore
     root = ElementTree.fromstring(xml_text)
 
     result = SuiteResult()
@@ -209,11 +207,7 @@ def parse_testng_results(xml_text: str) -> SuiteResult:
                 result.failed += 1
 
                 exception = test_method.find(".//exception/message")
-                message = (
-                    exception.text.strip()
-                    if exception is not None and exception.text
-                    else ""
-                )
+                message = exception.text.strip() if exception is not None and exception.text else ""
                 result.failures.append(
                     FailedTest(
                         name=f"{class_name}.{test_method.get('name', '')}",

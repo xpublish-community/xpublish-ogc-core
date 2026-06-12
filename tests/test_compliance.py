@@ -97,8 +97,7 @@ def test_collection(client):
     # contributions from the fake plugin's ogc_collection_dataqueries hook,
     # with relative hrefs made absolute
     assert (
-        data["data_queries"]["position"]["link"]["href"]
-        == "http://testserver/collections/air/fake"
+        data["data_queries"]["position"]["link"]["href"] == "http://testserver/collections/air/fake"
     )
 
 

@@ -1,11 +1,12 @@
 from enum import Enum
-from typing import Annotated, Any, Dict, List
+from typing import Annotated, Any
 from urllib.parse import urljoin
 
 import xarray as xr
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
-from xpublish import Dependencies, Plugin, hookimpl, hookspec as hookspec
+from xpublish import Dependencies, Plugin, hookimpl
+from xpublish import hookspec as hookspec
 
 from xpublish_ogc_core.models import Collections, ConfClasses, LandingPage, Link
 
@@ -32,7 +33,7 @@ class OgcPluginSpec(Plugin):
         pass
 
     @hookspec
-    def ogc_conformance_classes(self) -> Annotated[List[str], "Conformance class URIs"]:  # type: ignore[empty-body]
+    def ogc_conformance_classes(self) -> Annotated[list[str], "Conformance class URIs"]:  # type: ignore[empty-body]
         """A hook specification for declaring the OGC conformance classes a plugin satisfies.
 
         URIs follow the http://www.opengis.net/spec/... pattern and are aggregated
@@ -45,7 +46,7 @@ class OgcPluginSpec(Plugin):
         self,
         collection_id: str,
         ds: xr.Dataset,
-    ) -> Annotated[Dict[str, Any], "Metadata for a specific collection"]:
+    ) -> Annotated[dict[str, Any], "Metadata for a specific collection"]:
         """A hook specification for contributing keys to a collection object.
 
         Plugins may return arbitrary collection members (extent, parameter_names,
@@ -59,7 +60,7 @@ class OgcPluginSpec(Plugin):
         self,
         collection_id: str,
         ds: xr.Dataset,
-    ) -> Annotated[Dict[str, Dict], "Data queries for a specific collection"]:
+    ) -> Annotated[dict[str, dict], "Data queries for a specific collection"]:
         """A hook specification for adding data queries to collection metadata."""
         pass
 
@@ -106,9 +107,7 @@ class OgcCorePlugin(Plugin):
         for subrouter in deps.plugin_manager().hook.ogc_router(deps=deps):
             router.include_router(subrouter)
 
-        def build_collection(
-            collection_id: str, ds: xr.Dataset, base_url: str
-        ) -> Dict[str, Any]:
+        def build_collection(collection_id: str, ds: xr.Dataset, base_url: str) -> dict[str, Any]:
             """Build a collection object: the OGC API - Common members from the
             dataset, then plugin contributions merged on top.
 
@@ -116,7 +115,7 @@ class OgcCorePlugin(Plugin):
             output_formats requirements) are contributed by the plugins that
             implement those standards via the ogc_collection_metadata hook.
             """
-            collection: Dict[str, Any] = {
+            collection: dict[str, Any] = {
                 "id": collection_id,
             }
 
@@ -127,9 +126,7 @@ class OgcCorePlugin(Plugin):
 
             keywords = ds.attrs.get("keywords")
             if isinstance(keywords, str):
-                collection["keywords"] = [
-                    keyword.strip() for keyword in keywords.split(",")
-                ]
+                collection["keywords"] = [keyword.strip() for keyword in keywords.split(",")]
             elif keywords is not None:
                 collection["keywords"] = list(keywords)
 
@@ -156,7 +153,7 @@ class OgcCorePlugin(Plugin):
                 ).model_dump(exclude_none=True),
             ]
 
-            def absolutize(link: Dict[str, Any]) -> Dict[str, Any]:
+            def absolutize(link: dict[str, Any]) -> dict[str, Any]:
                 """Resolve root-relative hrefs from plugin contributions; clients
                 (and the CITE test suites) can't reliably resolve relative links."""
                 href = link.get("href", "")
@@ -176,7 +173,7 @@ class OgcCorePlugin(Plugin):
                 links.extend(absolutize(link) for link in contribution.pop("links", []))
                 collection.update(contribution)
 
-            data_queries: Dict[str, Dict] = {}
+            data_queries: dict[str, dict] = {}
             for dataquery in pm.hook.ogc_collection_dataqueries(
                 collection_id=collection_id,
                 ds=ds,
@@ -288,9 +285,7 @@ class OgcCorePlugin(Plugin):
                     ),
                 ],
                 collections=[
-                    build_collection(
-                        collection_id, deps.dataset(collection_id), base_url
-                    )
+                    build_collection(collection_id, deps.dataset(collection_id), base_url)
                     for collection_id in deps.dataset_ids()
                 ],
             )
@@ -305,9 +300,7 @@ class OgcCorePlugin(Plugin):
                 ds = deps.dataset(collection_id)
             except HTTPException as e:
                 if e.status_code == 404:
-                    return ogc_exception(
-                        404, f"Collection {collection_id!r} does not exist"
-                    )
+                    return ogc_exception(404, f"Collection {collection_id!r} does not exist")
                 raise
 
             return build_collection(collection_id, ds, str(request.base_url))

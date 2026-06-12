@@ -1,8 +1,6 @@
 # XPublish OGC Core
 
-Enable Xpublish plugins that support various OGC methods to serve via fully OGC compliant routes.
-
-_Currently it's a very alpha way to demo how we could do this. You have been warned._
+Enable Xpublish plugins that support various OGC standards to serve via fully OGC compliant routes.
 
 This works by creating an `app_router` that restructures the Xpublish API around [OGC API - Common](https://ogcapi.ogc.org/common/) conventions, and registering new `hookspec`s that other OGC plugins (for example [xpublish-edr](https://github.com/xpublish-community/xpublish-edr)) implement to contribute their conformance classes, collection metadata, and data queries.
 
@@ -42,7 +40,7 @@ Other OGC plugins implement these `hookspec`s (declared on `OgcPluginSpec`):
 
 ## Schema-driven development
 
-Development is driven by the official OGC schemas instead of hand-approximated responses:
+Development on this plugin, and for other OGC plugins is driven by the official OGC schemas and test suites:
 
 - The official OGC schemas are vendored under `src/xpublish_ogc_core/schemas/` so tests run offline (refresh with `uv run scripts/update_schemas.py`): the [OGC API - Common Part 1](https://schemas.opengis.net/ogcapi/common/part1/1.0/openapi/schemas/) building blocks plus the collections shapes from [OGC API - Features Part 1](https://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/) (the `"common"` document, which core's own responses validate against), and the bundled OpenAPI documents published by the [OGC API - EDR](https://github.com/opengeospatial/ogcapi-environmental-data-retrieval) and [OGC API - Tiles](https://github.com/opengeospatial/ogcapi-tiles) standards for the plugins implementing them.
 
@@ -61,6 +59,28 @@ Development is driven by the official OGC schemas instead of hand-approximated r
   ```
 
   Validation failures raise with the jsonschema error messages, pointing at the exact spec violation.
+
+- Plugins are also suggested to use [Schemathesis](https://schemathesis.readthedocs.io/en/stable/) for hypothesis testing their advertised endpoints. `xpublish_ogc_core.testing.bundled_schema()` helps with loading the schema and then hypothesis testing against the spec.
+
+- `xpublish_ogc_core.teamengine` is also shipped to help facilitate other plugins testing with the OGC CITE test suites running in Docker.
+
+  ```python
+  from xpublish_ogc_core import teamengine
+
+  with (
+      teamengine.serve_app(rest.app) as app_url,
+      teamengine.teamengine_container(
+          "ogccite/ets-ogcapi-edr10:1.3-teamengine-6.0.0-RC2"
+      ) as engine_url,
+  ):
+      result = teamengine.run_suite(
+          engine_url,
+          "ogcapi-edr10",
+          {"iut": app_url, "apiDefinition": f"{app_url}/openapi.json"},
+      )
+
+  assert not result.failure_names(), result.summary()
+  ```
 
 ## Development
 

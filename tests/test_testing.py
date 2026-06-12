@@ -68,9 +68,7 @@ def test_common_validation_resolves_refs_between_files():
             "collections": [
                 {
                     "id": "air",
-                    "links": [
-                        {"href": "https://example.org/collections/air", "rel": "self"}
-                    ],
+                    "links": [{"href": "https://example.org/collections/air", "rel": "self"}],
                 },
             ],
         },

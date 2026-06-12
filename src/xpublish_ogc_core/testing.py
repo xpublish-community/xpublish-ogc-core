@@ -22,13 +22,18 @@ suites to assert their responses follow the spec::
 """
 
 import json
-from functools import lru_cache
+from functools import cache
 from importlib import resources
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
+import fastapi
 import jsonschema
+import schemathesis
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT7
+
+if TYPE_CHECKING:
+    from schemathesis.specs.openapi.schemas import OpenApiSchema
 
 BUNDLED_DOCUMENTS = {
     "edr": "ogcapi-environmental-data-retrieval-1-oas30.bundled.json",
@@ -54,7 +59,7 @@ def _base_uri(document: str) -> str:
     return f"urn:xpublish-ogc-core:{BUNDLED_DOCUMENTS[document]}"
 
 
-@lru_cache(maxsize=None)
+@cache
 def bundled_document(document: str = DEFAULT_DOCUMENT) -> dict:
     """Load a vendored OGC bundled OpenAPI document."""
     if document not in BUNDLED_DOCUMENTS:
@@ -68,7 +73,17 @@ def bundled_document(document: str = DEFAULT_DOCUMENT) -> dict:
         return json.load(f)
 
 
-@lru_cache(maxsize=None)
+def bundled_schema(
+    document: str = DEFAULT_DOCUMENT, with_app: fastapi.FastAPI | None = None
+) -> "OpenApiSchema":
+    """Load a vendored OGC bundled OpenAPI document as a Schemathesis schema and set the app to test against."""
+    schema = schemathesis.openapi.from_dict(bundled_document(document))
+    if with_app is not None:
+        schema.app = with_app
+    return schema
+
+
+@cache
 def _manifest(document: str) -> dict:
     """Load the manifest of a standalone schema file document."""
     manifest_path = _schemas_root() / SCHEMA_FILE_DOCUMENTS[document] / "manifest.json"
@@ -76,7 +91,7 @@ def _manifest(document: str) -> dict:
         return json.load(f)
 
 
-@lru_cache(maxsize=None)
+@cache
 def _registry(document: str) -> Registry:
     """A referencing registry covering the document's schemas.
 
@@ -133,10 +148,7 @@ def component_schema(name: str, document: str = DEFAULT_DOCUMENT) -> dict:
     if "schema" in response.get("content", {}).get("application/json", {}):
         # `/` in the media type is escaped as `~1` per the JSON pointer spec
         return {
-            "$ref": (
-                f"{base_uri}#/components/responses/{name}"
-                "/content/application~1json/schema"
-            ),
+            "$ref": (f"{base_uri}#/components/responses/{name}/content/application~1json/schema"),
         }
 
     raise KeyError(
