@@ -45,18 +45,15 @@ def test_common_subset_of_edr_cite_suite(air_dataset):
         plugins={"ogc": OgcCorePlugin(), "fake": FakeOgcPlugin()},
     )
 
-    with (
-        teamengine.serve_app(rest.app) as app_url,
-        teamengine.teamengine_container(ETS_IMAGE) as engine_url,
-    ):
-        result = teamengine.run_suite(
-            engine_url,
-            SUITE,
-            {
-                "iut": app_url,
-                "apiDefinition": f"{app_url}/openapi.json",
-            },
-        )
+    result = teamengine.run_suite_with_app(
+        SUITE,
+        rest.app,
+        {
+            "iut": "http://localhost/",
+            "apiDefinition": "http://localhost/openapi.json",
+        },
+        ETS_IMAGE,
+    )
 
     unexpected = result.failure_names() - KNOWN_FAILURES
     assert not unexpected, f"Unexpected CITE failures:\n{result.summary()}"

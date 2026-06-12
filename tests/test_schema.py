@@ -21,9 +21,7 @@ def build_app():
     return rest.app
 
 
-plugin_schema = schemathesis.openapi.from_asgi("/openapi.json", build_app()).include(
-    path_regex=r"^/(collections|conformance|$)",
-)
+plugin_schema = schemathesis.openapi.from_asgi("/openapi.json", build_app())
 
 ogc_schema = (
     testing.bundled_schema(with_app=build_app())

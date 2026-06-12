@@ -34,6 +34,8 @@ from collections.abc import Iterator
 from dataclasses import dataclass, field
 from xml.etree import ElementTree
 
+import fastapi
+
 # the host as seen from inside a container, provided by Docker Desktop and
 # mapped explicitly on Linux via --add-host below
 DOCKER_HOST_GATEWAY = "host.docker.internal"
@@ -246,3 +248,25 @@ def run_suite(
     response.raise_for_status()
 
     return parse_testng_results(response.text)
+
+
+def run_suite_with_app(
+    suite: str,
+    app: "fastapi.FastAPI",
+    params: dict[str, str],
+    ets_image: str,
+    auth: tuple[str, str] = DEFAULT_CREDENTIALS,
+    timeout: float = 1800,
+) -> SuiteResult:
+    """Convenience wrapper to run a test suite against an ASGI app."""
+    with (
+        serve_app(app) as app_url,
+        teamengine_container(ets_image) as engine_url,
+    ):
+        return run_suite(
+            teamengine_url=engine_url,
+            suite=suite,
+            params={**params, "iut": app_url, "apiDefinition": f"{app_url}/openapi.json"},
+            auth=auth,
+            timeout=timeout,
+        )

@@ -77,7 +77,14 @@ def bundled_schema(
     document: str = DEFAULT_DOCUMENT, with_app: fastapi.FastAPI | None = None
 ) -> "OpenApiSchema":
     """Load a vendored OGC bundled OpenAPI document as a Schemathesis schema and set the app to test against."""
-    schema = schemathesis.openapi.from_dict(bundled_document(document))
+    doc = bundled_document(document)
+    if with_app is not None:
+        # The bundled spec's server URL (e.g. https://example.org/edr) carries a
+        # base path that Schemathesis prepends to every generated URL.  When
+        # testing against an ASGI app the app serves at root, so override the
+        # server URL so paths resolve to /  instead of /edr/ (or similar).
+        doc = {**doc, "servers": [{"url": "http://localhost/"}]}
+    schema = schemathesis.openapi.from_dict(doc)
     if with_app is not None:
         schema.app = with_app
     return schema
