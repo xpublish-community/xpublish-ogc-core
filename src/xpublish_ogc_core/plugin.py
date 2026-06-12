@@ -127,7 +127,23 @@ class OgcCorePlugin(Plugin):
                     type="application/json",
                     title="This collection",
                 ).model_dump(exclude_none=True),
+                # each collection must link to itself with a `collection` (or
+                # `data`) relation, cf. OGC API EDR 1.0 Abstract Test 15
+                Link(
+                    href=urljoin(base_url, f"collections/{collection_id}"),
+                    rel="collection",
+                    type="application/json",
+                    title="This collection",
+                ).model_dump(exclude_none=True),
             ]
+
+            def absolutize(link: Dict[str, Any]) -> Dict[str, Any]:
+                """Resolve root-relative hrefs from plugin contributions; clients
+                (and the CITE test suites) can't reliably resolve relative links."""
+                href = link.get("href", "")
+                if href.startswith("/"):
+                    link = {**link, "href": urljoin(base_url, href.lstrip("/"))}
+                return link
 
             pm = deps.plugin_manager()
 
@@ -138,7 +154,9 @@ class OgcCorePlugin(Plugin):
                 if not contribution:
                     continue
                 contribution = dict(contribution)
-                links.extend(contribution.pop("links", []))
+                links.extend(
+                    absolutize(link) for link in contribution.pop("links", [])
+                )
                 collection.update(contribution)
 
             data_queries: Dict[str, Dict] = {}
@@ -146,8 +164,13 @@ class OgcCorePlugin(Plugin):
                 collection_id=collection_id,
                 ds=ds,
             ):
-                if dataquery:
-                    data_queries.update(dataquery)
+                if not dataquery:
+                    continue
+                for name, query in dataquery.items():
+                    query = dict(query)
+                    if "link" in query:
+                        query["link"] = absolutize(query["link"])
+                    data_queries[name] = query
 
             collection["data_queries"] = data_queries
             collection["links"] = links

@@ -84,8 +84,12 @@ def test_collection(client):
     assert data["output_formats"] == ["application/json"]
     assert "air" in data["parameter_names"]
 
-    # contributions from the fake plugin's ogc_collection_dataqueries hook
-    assert data["data_queries"]["position"]["link"]["href"] == "/collections/air/fake"
+    # contributions from the fake plugin's ogc_collection_dataqueries hook,
+    # with relative hrefs made absolute
+    assert (
+        data["data_queries"]["position"]["link"]["href"]
+        == "http://testserver/collections/air/fake"
+    )
 
 
 def test_unknown_collection_returns_ogc_exception(client):

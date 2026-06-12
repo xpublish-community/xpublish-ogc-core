@@ -1,0 +1,44 @@
+# Compliance testing
+
+xpublish-ogc-core is developed against the official OGC artifacts instead of
+hand-approximated responses, through three layers of testing:
+
+1. **Schema validation** — every endpoint's body is validated against the
+   bundled OpenAPI documents published by the OGC API standards, vendored
+   under `src/xpublish_ogc_core/schemas/` (refresh with
+   `python scripts/update_schemas.py`). The helpers in
+   `xpublish_ogc_core.testing` are shipped with the package so downstream
+   plugins can do the same.
+2. **Schemathesis fuzzing** — `tests/test_schemathesis.py` generates requests
+   from the app's own OpenAPI description and validates the responses
+   against it.
+3. **OGC CITE executable test suites** — `xpublish_ogc_core.teamengine` runs
+   the official `ogccite/ets-*` Docker images via TeamEngine's REST API.
+   The suite runs live in the plugin repos that compose ogc-core with a data
+   plugin (`tests/test_teamengine.py` in xpublish-edr and xpublish-tiles);
+   this repo tests the harness itself.
+
+## What the tests found
+
+Each of these was caught by a test layer and fixed in this repo:
+
+| Found by | Error | Change |
+| -------- | ----- | ------ |
+| `validate_response("collections", ...)` against the official `collections` schema | `/collections` returned a bare list of dataset ids | Spec-shaped `Collections` body with `links` and full collection objects built by a shared `build_collection()` helper |
+| `validate_response("collection", ...)` | Collection objects were missing the keys the `collection` schema requires (`links`, `extent`, `crs`, `output_formats`, `parameter_names`) | Base keys with empty defaults, merged with plugin contributions from the `ogc_collection_metadata` / `ogc_collection_dataqueries` hooks |
+| `validate_response("exception", ...)` | Unknown collection ids returned FastAPI's `{"detail": ...}` body | OGC `exception`-shaped 404 bodies (`{"code", "description"}`) |
+| CITE ets-ogcapi-edr10, `CollectionsResponse.verifyCollectionsMetadata` (EDR 1.0 Abstract Test 15) | Collections in `/collections` had no `data` or `collection` rel link | Each collection links to itself with `rel: collection` in addition to `rel: self` |
+| CITE ets-ogcapi-tiles10, `GeospatialDataResource.*` and `Tile.*` | Root-relative link hrefs contributed by plugins are resolved by the CITE suites as `scheme://host` + href, dropping the port | `build_collection()` rewrites relative hrefs in contributed links and `data_queries` to absolute URLs |
+
+## TeamEngine quirks worth knowing
+
+Hard-won debugging knowledge baked into `xpublish_ogc_core.teamengine`:
+
+- The REST API requires basic auth; the `ogccite` images ship a default
+  `ogctest:ogctest` user.
+- URI-valued test run properties (e.g. `iut`) must **not** end with a
+  trailing slash — the suites concatenate paths like `/collections` directly
+  onto them, and `//collections` is a 404.
+- The EDR suite reports a missing `apiDefinition` argument with a misleading
+  `Absolute URI is required, but received` error. It does not mean `iut` was
+  mangled; pass `apiDefinition=<iut>/openapi.json`.
