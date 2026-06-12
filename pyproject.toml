@@ -1,6 +1,6 @@
 [build-system]
-build-backend = "uv_build"
-requires = [ "uv-build>=0.8.15,<0.9" ]
+build-backend = "hatchling.build"
+requires = [ "hatch-vcs", "hatchling" ]
 
 [project]
 name = "xpublish-ogc-core"
@@ -27,11 +27,17 @@ dev = [
   "netcdf4",
   "pooch",
   "pytest>=9",
+  "pytest-cov>=7.1",
   "referencing",
   "schemathesis>=4.11.2",
   "scipy",
   "uvicorn",
 ]
+
+[tool.hatch]
+version.source = "vcs"
+build.hooks.vcs.version-file = "src/xpublish_ogc_core/_version.py"
+build.targets.wheel.packages = [ "src/xpublish_ogc_core" ]
 
 [tool.ruff]
 line-length = 100
@@ -57,6 +63,9 @@ ignore = [
 
 [tool.codespell]
 skip = "src/xpublish_ogc_core/schemas/*"
+
+[tool.check-manifest]
+ignore = [ "src/xpublish_ogc_core/_version.py" ]
 
 [tool.mypy]
 files = "src/xpublish_ogc_core"

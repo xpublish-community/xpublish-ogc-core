@@ -11,3 +11,7 @@ docs/source/tutorial.ipynb
 xpublish_edr/_version.py
 docs/_build
 node_modules
+src/xpublish_ogc_core/_version.py
+coverage.xml
+.hypothesis/
+.claude/settings.local.json

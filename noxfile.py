@@ -28,6 +28,15 @@ def tests(session: nox.Session):
 
 
 @nox.session
+def wheel(session: nox.Session):
+    """Build a wheel."""
+    session.install("build", "check-manifest", "twine")
+    session.run("python", "-m", "build", "--wheel", ".", "--outdir", "dist")
+    session.run("check-manifest", "--verbose")
+    session.run("twine", "check", "dist/*")
+
+
+@nox.session
 def pre_commit(session: nox.Session):
     """Run pre-commit with prek."""
     session.install("prek")
