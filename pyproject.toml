@@ -1,19 +1,88 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = [ "hatch-vcs", "hatchling" ]
+
 [project]
 name = "xpublish-ogc-core"
 version = "0.1.0"
-description = "Add your description here"
+description = "OGC API Common structure and support for OGC Xpublish plugins"
 readme = "README.md"
-authors = [
-    { name = "Alex Kerney", email = "abk@mac.com" }
+license = { file = "LICENSE" }
+authors = [ { name = "Alex Kerney", email = "abk@mac.com" } ]
+requires-python = ">=3.12"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
-requires-python = ">=3.11"
-dependencies = [
-    "xpublish>=0.4.1"
+dependencies = [ "pydantic>=2", "xpublish>=0.5" ]
+entry-points."xpublish.plugin".xpublish_ogc_core = "xpublish_ogc_core.plugin:OgcCorePlugin"
+
+[dependency-groups]
+dev = [
+  "cf-xarray",
+  "httpx2",
+  "jsonschema",
+  "netcdf4",
+  "pooch",
+  "pytest>=9",
+  "pytest-cov>=7.1",
+  "referencing",
+  "schemathesis>=4.11.2",
+  "scipy",
+  "uvicorn",
 ]
 
-[build-system]
-requires = ["uv_build>=0.8.15,<0.9.0"]
-build-backend = "uv_build"
+[tool.hatch]
+version.source = "vcs"
+build.hooks.vcs.version-file = "src/xpublish_ogc_core/_version.py"
+build.targets.wheel.packages = [ "src/xpublish_ogc_core" ]
 
-[project.entry-points."xpublish.plugin"]
-xpublish_ogc_core = "xpublish_ogc_core.plugin:OgcCorePlugin"
+[tool.ruff]
+line-length = 100
+lint.extend-select = [
+  "B",   # flake8-bugbear
+  "I",   # isort
+  "T20", # flake8-print
+  "UP",  # pyupgrade
+]
+
+[tool.repo-review]
+ignore = [
+  "PY004", # Docs folder
+  "PP309", # Pytest filter warnings
+  "GH103", # Don't require workflow dispatch
+  "GH200", # Uses Renovate rather than Dependabot
+  "PC140", # Mypy pre-commit hook
+  "PC170", # pygrep to check RST files
+  "PC901", # custom pre-commit commit message
+  "PC902", # custom pre-commit autofix message
+  "PC903", # Set a pre-commit CI schedule
+]
+
+[tool.codespell]
+skip = "src/xpublish_ogc_core/schemas/*,tests/fixtures/*"
+
+[tool.check-manifest]
+ignore = [ "src/xpublish_ogc_core/_version.py" ]
+
+[tool.mypy]
+files = "src/xpublish_ogc_core"
+warn_unreachable = true
+enable_error_code = [ "ignore-without-code", "redundant-expr", "truthy-bool" ]
+strict = true
+
+[tool.pytest]
+# filterwarnings = [
+#   "error",
+#   "ignore:numpy.ndarray size changed:RuntimeWarning",
+# ]
+addopts = [ "-ra" ]
+log_level = "INFO"
+markers = [
+  "cite: official OGC CITE compliance suites run with TeamEngine in Docker (slow)",
+]
+minversion = "9"
+strict = true
+testpaths = [ "tests" ]

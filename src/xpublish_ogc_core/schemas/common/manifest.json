@@ -1,0 +1,21 @@
+{
+  "components": {
+    "landingPage": "part1/landingPage.json",
+    "confClasses": "part1/confClasses.json",
+    "exception": "part1/exception.json",
+    "link": "part1/link.json",
+    "collections": "features/collections.json",
+    "collection": "features/collection.json",
+    "extent": "features/extent.json"
+  },
+  "resources": {
+    "part1/landingPage.json": "https://schemas.opengis.net/ogcapi/common/part1/1.0/openapi/schemas/landingPage.json",
+    "part1/confClasses.json": "https://schemas.opengis.net/ogcapi/common/part1/1.0/openapi/schemas/confClasses.json",
+    "part1/exception.json": "https://schemas.opengis.net/ogcapi/common/part1/1.0/openapi/schemas/exception.json",
+    "part1/link.json": "https://schemas.opengis.net/ogcapi/common/part1/1.0/openapi/schemas/link.json",
+    "features/collections.json": "https://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/collections.json",
+    "features/collection.json": "https://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/collection.json",
+    "features/extent.json": "https://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/extent.json",
+    "features/link.json": "https://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/link.json"
+  }
+}

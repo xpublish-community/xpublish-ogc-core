@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "schedule": ["before 4am on Tuesday"],
+  "pinDigests": true,
+  "pre-commit": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 0,
+  "major": {
+    "dependencyDashboardApproval": true
+  },
+  "minimumReleaseAge": "7 days"
+}
