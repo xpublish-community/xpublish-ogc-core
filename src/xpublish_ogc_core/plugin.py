@@ -62,10 +62,21 @@ class OgcPluginSpec(Plugin):
 
 
 def ogc_exception(status_code: int, description: str) -> JSONResponse:
-    """An error response shaped like the OGC `exception` schema."""
+    """An error response satisfying both OGC exception schemas.
+
+    OGC API - Common Part 1 exceptions are RFC 7807 problem details
+    (`type` is required); OGC API - EDR's exception schema requires `code`
+    instead. Both allow additional members, so the body carries both shapes.
+    """
     return JSONResponse(
         status_code=status_code,
-        content={"code": str(status_code), "description": description},
+        content={
+            "type": "about:blank",
+            "status": status_code,
+            "detail": description,
+            "code": str(status_code),
+            "description": description,
+        },
     )
 
 
@@ -93,14 +104,15 @@ class OgcCorePlugin(Plugin):
             router.include_router(subrouter)
 
         def build_collection(collection_id: str, ds: xr.Dataset, base_url: str) -> Dict[str, Any]:
-            """Build a collection object: spec-required keys from the dataset,
-            then plugin contributions merged on top."""
+            """Build a collection object: the OGC API - Common members from the
+            dataset, then plugin contributions merged on top.
+
+            Standard-specific members (e.g. EDR's extent/crs/parameter_names/
+            output_formats requirements) are contributed by the plugins that
+            implement those standards via the ogc_collection_metadata hook.
+            """
             collection: Dict[str, Any] = {
                 "id": collection_id,
-                "extent": {},
-                "crs": [],
-                "output_formats": [],
-                "parameter_names": {},
             }
 
             for key in ("title", "description", "attribution"):
@@ -172,7 +184,10 @@ class OgcCorePlugin(Plugin):
                         query["link"] = absolutize(query["link"])
                     data_queries[name] = query
 
-            collection["data_queries"] = data_queries
+            # data_queries is an EDR member, so it only appears when a plugin
+            # describes some
+            if data_queries:
+                collection["data_queries"] = data_queries
             collection["links"] = links
 
             return collection

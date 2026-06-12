@@ -40,7 +40,9 @@ class FakeOgcPlugin(Plugin):
             "extent": {
                 "spatial": {
                     "bbox": [[200.0, 15.0, 322.5, 75.0]],
-                    "crs": "EPSG:4326",
+                    # the OGC API - Common / Features extent schema only
+                    # allows CRS84 here (EDR's loosens it to any string)
+                    "crs": "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
                 },
             },
             "crs": ["EPSG:4326"],

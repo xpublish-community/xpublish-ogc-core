@@ -4,11 +4,14 @@ xpublish-ogc-core is developed against the official OGC artifacts instead of
 hand-approximated responses, through three layers of testing:
 
 1. **Schema validation** — every endpoint's body is validated against the
-   bundled OpenAPI documents published by the OGC API standards, vendored
-   under `src/xpublish_ogc_core/schemas/` (refresh with
-   `python scripts/update_schemas.py`). The helpers in
-   `xpublish_ogc_core.testing` are shipped with the package so downstream
-   plugins can do the same.
+   official OGC schemas vendored under `src/xpublish_ogc_core/schemas/`
+   (refresh with `uv run scripts/update_schemas.py`). Core's own responses
+   validate against the **OGC API - Common** building blocks (the `"common"`
+   document: Common Part 1 plus the collections shapes from Features Part 1,
+   which the unpublished Common Part 2 derives from); the standard-specific
+   bundles (`"edr"`, `"tiles"`) are vendored for the plugin repos that
+   implement those standards. The helpers in `xpublish_ogc_core.testing`
+   are shipped with the package so downstream plugins can do the same.
 2. **Schemathesis fuzzing** — `tests/test_schemathesis.py` generates requests
    from the app's own OpenAPI description and validates the responses
    against it.
@@ -29,6 +32,15 @@ Each of these was caught by a test layer and fixed in this repo:
 | `validate_response("exception", ...)` | Unknown collection ids returned FastAPI's `{"detail": ...}` body | OGC `exception`-shaped 404 bodies (`{"code", "description"}`) |
 | CITE ets-ogcapi-edr10, `CollectionsResponse.verifyCollectionsMetadata` (EDR 1.0 Abstract Test 15) | Collections in `/collections` had no `data` or `collection` rel link | Each collection links to itself with `rel: collection` in addition to `rel: self` |
 | CITE ets-ogcapi-tiles10, `GeospatialDataResource.*` and `Tile.*` | Root-relative link hrefs contributed by plugins are resolved by the CITE suites as `scheme://host` + href, dropping the port | `build_collection()` rewrites relative hrefs in contributed links and `data_queries` to absolute URLs |
+| `validate_response("collection", ..., document="common")` | Core injected EDR-specific members (`extent: {}`, `crs: []`, `output_formats: []`, `parameter_names: {}`, and an unconditional `data_queries`) into every collection, even on servers without the EDR plugin | Core's base collection is a minimal Common collection (`id`, `links`, attrs-derived metadata); the EDR members come only from plugin hook contributions, and `data_queries` only appears when a plugin describes some |
+| `validate_response("exception", ..., document="common")` | The 404 body satisfied EDR's `exception` schema (`code`) but not Common Part 1's RFC 7807 shape (`type` required) | `ogc_exception()` carries both shapes (`type`/`status`/`detail` plus `code`/`description`) — both schemas allow additional members |
+
+One divergence between the standards surfaced by the Common validation:
+the Common/Features `extent.spatial.crs` only allows CRS84 URIs, while
+EDR's extent schema loosens it to any CRS string (e.g. `EPSG:4326`, which
+EDR's metadata machinery emits). Collections contributed by the EDR plugin
+follow EDR's reading; the stub plugin in core's tests uses the CRS84 URI so
+core validates against the stricter Common schema.
 
 ## TeamEngine quirks worth knowing
 

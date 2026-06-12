@@ -1,8 +1,17 @@
-"""Validate every OGC core endpoint against the vendored official OGC schemas."""
+"""Validate every OGC core endpoint against the official OGC API - Common schemas.
 
-from conftest import FAKE_CONFORMANCE_CLASS
+Core implements OGC API - Common, so its responses are validated against the
+Common building blocks (with the collections shapes from Features Part 1,
+which the unpublished Common Part 2 derives from). Validation against the
+standard-specific schemas (EDR, Tiles) lives in the plugin repos that
+implement those standards.
+"""
 
-from xpublish_ogc_core.plugin import OGC_API_COMMON_CONFORMANCE_CLASSES
+import xpublish
+from conftest import FAKE_CONFORMANCE_CLASS, FakeOgcPlugin  # noqa: F401
+from fastapi.testclient import TestClient
+
+from xpublish_ogc_core.plugin import OGC_API_COMMON_CONFORMANCE_CLASSES, OgcCorePlugin
 from xpublish_ogc_core.testing import validate_response
 
 
@@ -17,7 +26,7 @@ def test_landing_page(client):
     assert response.headers["content-type"] == "application/json"
 
     data = response.json()
-    validate_response("landingPage", data)
+    validate_response("landingPage", data, document="common")
 
     rels = link_rels(data)
     for rel in (
@@ -39,7 +48,7 @@ def test_conformance(client):
     assert response.headers["content-type"] == "application/json"
 
     data = response.json()
-    validate_response("confClasses", data)
+    validate_response("confClasses", data, document="common")
 
     for conformance_class in OGC_API_COMMON_CONFORMANCE_CLASSES:
         assert conformance_class in data["conformsTo"]
@@ -58,7 +67,7 @@ def test_collections(client):
     assert response.headers["content-type"] == "application/json"
 
     data = response.json()
-    validate_response("collections", data)
+    validate_response("collections", data, document="common")
 
     assert "self" in link_rels(data)
 
@@ -73,10 +82,11 @@ def test_collection(client):
     assert response.headers["content-type"] == "application/json"
 
     data = response.json()
-    validate_response("collection", data)
+    validate_response("collection", data, document="common")
 
     assert data["id"] == "air"
     assert "self" in link_rels(data)
+    assert "collection" in link_rels(data)
 
     # contributions from the fake plugin's ogc_collection_metadata hook
     assert data["extent"]["spatial"]["bbox"] == [[200.0, 15.0, 322.5, 75.0]]
@@ -92,13 +102,42 @@ def test_collection(client):
     )
 
 
+def test_collection_without_ogc_plugins(air_dataset):
+    """Without contributing plugins, collections are minimal Common collections:
+    no EDR members (extent, crs, output_formats, parameter_names, data_queries)
+    leak out of the core plugin."""
+    rest = xpublish.Rest({"air": air_dataset}, plugins={"ogc": OgcCorePlugin()})
+    client = TestClient(rest.app)
+
+    response = client.get("/collections/air")
+    assert response.status_code == 200
+
+    data = response.json()
+    validate_response("collection", data, document="common")
+
+    assert data["id"] == "air"
+    assert "self" in link_rels(data)
+
+    for edr_member in (
+        "extent",
+        "crs",
+        "output_formats",
+        "parameter_names",
+        "data_queries",
+    ):
+        assert edr_member not in data, (
+            f"{edr_member!r} is a standard-specific member and should only be "
+            "present when a plugin contributes it"
+        )
+
+
 def test_unknown_collection_returns_ogc_exception(client):
     response = client.get("/collections/not-a-collection")
 
     assert response.status_code == 404
 
     data = response.json()
-    validate_response("exception", data)
+    validate_response("exception", data, document="common")
 
 
 def test_ogc_router_hook_mounted(client):

@@ -19,7 +19,7 @@ def test_bundled_documents_load(document):
 
 
 def test_unknown_document():
-    with pytest.raises(KeyError, match="not a vendored OGC document"):
+    with pytest.raises(KeyError, match="not a vendored OGC bundle"):
         bundled_document("not-a-standard")
 
 
@@ -38,6 +38,41 @@ def test_component_schema(name, document):
     schema = component_schema(name, document)
 
     assert schema["$ref"].endswith(f"#/components/schemas/{name}")
+
+
+@pytest.mark.parametrize(
+    "name",
+    ["landingPage", "confClasses", "exception", "link", "collections", "collection", "extent"],
+)
+def test_common_component_schema(name):
+    """The Common document is standalone schema files, referenced by source URI."""
+    schema = component_schema(name, "common")
+
+    assert schema["$ref"].startswith("https://schemas.opengis.net/")
+
+
+def test_common_validation_resolves_refs_between_files():
+    """collections -> collection -> link refs resolve across the vendored files."""
+    validate_response(
+        "collections",
+        {
+            "links": [{"href": "https://example.org/collections", "rel": "self"}],
+            "collections": [
+                {
+                    "id": "air",
+                    "links": [{"href": "https://example.org/collections/air", "rel": "self"}],
+                },
+            ],
+        },
+        document="common",
+    )
+
+    with pytest.raises(AssertionError, match="'id' is a required property"):
+        validate_response(
+            "collections",
+            {"links": [], "collections": [{"links": []}]},
+            document="common",
+        )
 
 
 @pytest.mark.parametrize(

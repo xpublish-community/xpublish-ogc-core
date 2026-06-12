@@ -101,11 +101,13 @@ def serve_app(app, port: Optional[int] = None) -> Iterator[str]:
 def teamengine_container(
     image: str,
     port: Optional[int] = None,
-    startup_timeout: float = 300,
+    startup_timeout: float = 600,
 ) -> Iterator[str]:
     """Run a TeamEngine CITE image, yielding its base REST URL once responsive.
 
-    The image is pulled on first use, which can take a while.
+    The image is pulled on first use, which can take a while. The generous
+    startup timeout accounts for the amd64-only images booting under
+    emulation on other architectures.
     """
     import httpx
 

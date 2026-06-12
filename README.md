@@ -44,13 +44,13 @@ Other OGC plugins implement these `hookspec`s (declared on `OgcPluginSpec`):
 
 Development is driven by the official OGC schemas instead of hand-approximated responses:
 
-- The bundled OpenAPI documents published by the [OGC API - Environmental Data Retrieval](https://github.com/opengeospatial/ogcapi-environmental-data-retrieval) (which also bundles the OGC API - Common building blocks) and [OGC API - Tiles](https://github.com/opengeospatial/ogcapi-tiles) standards are vendored under `src/xpublish_ogc_core/schemas/` so tests run offline. Refresh them with `python scripts/update_schemas.py`.
-- `xpublish_ogc_core.testing` is shipped with the package so downstream plugins can validate their own responses against the official component schemas (the `document` argument picks the bundle, defaulting to `"edr"`):
+- The official OGC schemas are vendored under `src/xpublish_ogc_core/schemas/` so tests run offline (refresh with `uv run scripts/update_schemas.py`): the [OGC API - Common Part 1](https://schemas.opengis.net/ogcapi/common/part1/1.0/openapi/schemas/) building blocks plus the collections shapes from [OGC API - Features Part 1](https://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/) (the `"common"` document, which core's own responses validate against), and the bundled OpenAPI documents published by the [OGC API - EDR](https://github.com/opengeospatial/ogcapi-environmental-data-retrieval) and [OGC API - Tiles](https://github.com/opengeospatial/ogcapi-tiles) standards for the plugins implementing them.
+- `xpublish_ogc_core.testing` is shipped with the package so downstream plugins can validate their own responses against the official component schemas (the `document` argument picks the schema set, defaulting to `"edr"`):
 
   ```python
   from xpublish_ogc_core.testing import validate_response
 
-  validate_response("landingPage", client.get("/").json())
+  validate_response("landingPage", client.get("/").json(), document="common")
   validate_response("collection", client.get("/collections/air").json())
   validate_response("tileSet", client.get("/datasets/air/tiles/WebMercatorQuad").json(), document="tiles")
   ```
