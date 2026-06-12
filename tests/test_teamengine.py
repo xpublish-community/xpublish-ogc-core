@@ -1,7 +1,8 @@
 """Tests for the TeamEngine (CITE) harness shipped for downstream OGC plugins.
 
-These only cover the offline pieces; the actual CITE suite runs live in the
-plugin repos that compose ogc-core with a data plugin (xpublish-edr,
+These cover the offline pieces of the harness; ``test_cite.py`` runs an
+actual suite against this plugin, and the full standard-specific suites run
+in the plugin repos that compose ogc-core with a data plugin (xpublish-edr,
 xpublish-tiles).
 """
 

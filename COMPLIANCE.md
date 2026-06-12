@@ -17,9 +17,16 @@ hand-approximated responses, through three layers of testing:
    against it.
 3. **OGC CITE executable test suites** — `xpublish_ogc_core.teamengine` runs
    the official `ogccite/ets-*` Docker images via TeamEngine's REST API.
-   The suite runs live in the plugin repos that compose ogc-core with a data
-   plugin (`tests/test_teamengine.py` in xpublish-edr and xpublish-tiles);
-   this repo tests the harness itself.
+   There is no executable test suite for OGC API - Common itself, so
+   `tests/test_cite.py` runs the EDR suite against the core plugin composed
+   with a stub OGC plugin: its Common subset (landing page, api definition,
+   conformance declaration, collections structure) directly exercises core's
+   endpoints, with the EDR-specific expectations in a known-failures list
+   (the suite demands the EDR conformance class, which a Common-only server
+   correctly does not declare). The full standard-specific suites run in the
+   plugin repos (`tests/test_teamengine.py` in xpublish-edr and
+   xpublish-tiles), whose landing page, conformance, and collections
+   responses are also served by this plugin.
 
 ## What the tests found
 

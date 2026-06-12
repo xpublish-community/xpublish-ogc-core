@@ -22,6 +22,12 @@ dev = [
     "pytest",
     "referencing",
     "schemathesis>=4",
+    "uvicorn",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "cite: official OGC CITE compliance suites run with TeamEngine in Docker (slow)",
 ]
 
 [build-system]
