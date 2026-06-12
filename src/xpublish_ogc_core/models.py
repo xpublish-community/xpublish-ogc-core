@@ -10,6 +10,24 @@ from typing import Any
 from pydantic import BaseModel
 
 
+class OGCException(BaseModel):
+    """An OGC API error body.
+
+    Carries both error shapes the OGC schemas accept: OGC API - Common Part 1
+    uses RFC 7807 problem details (``type``/``status``/``detail``), while OGC
+    API - EDR requires ``code``. :func:`xpublish_ogc_core.plugin.ogc_exception`
+    produces this body, and :class:`~xpublish_ogc_core.plugin.OGCExceptionRoute`
+    reshapes errors into it; declare it on a route's ``responses`` so the
+    OpenAPI document matches what those error responses actually return.
+    """
+
+    code: str
+    description: str | None = None
+    type: str | None = None
+    status: int | None = None
+    detail: str | None = None
+
+
 class Link(BaseModel):
     """A link following OGC API and RFC 8288 (Web Linking) conventions.
 
