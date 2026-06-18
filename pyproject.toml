@@ -4,7 +4,6 @@ requires = [ "hatch-vcs", "hatchling" ]
 
 [project]
 name = "xpublish-ogc-core"
-version = "0.1.0"
 description = "OGC API Common structure and support for OGC Xpublish plugins"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -16,6 +15,7 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
 ]
+dynamic = [ "version" ]
 dependencies = [ "pydantic>=2", "xpublish>=0.5.2" ]
 urls.repository = "https://github.com/xpublish-community/xpublish-ogc-core"
 entry-points."xpublish.plugin".xpublish_ogc_core = "xpublish_ogc_core.plugin:OgcCorePlugin"
