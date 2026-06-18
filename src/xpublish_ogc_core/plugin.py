@@ -63,6 +63,7 @@ class OgcPluginSpec(Plugin):
         self,
         collection_id: str,
         ds: xr.Dataset,
+        deps: Dependencies,
     ) -> Annotated[dict[str, Any], "Metadata for a specific collection"]:
         """A hook specification for contributing keys to a collection object.
 
@@ -77,6 +78,7 @@ class OgcPluginSpec(Plugin):
         self,
         collection_id: str,
         ds: xr.Dataset,
+        deps: Dependencies,
     ) -> Annotated[dict[str, dict], "Data queries for a specific collection"]:
         """A hook specification for adding data queries to collection metadata."""
         pass
@@ -221,6 +223,7 @@ class OgcCorePlugin(Plugin):
             for contribution in pm.hook.ogc_collection_metadata(
                 collection_id=collection_id,
                 ds=ds,
+                deps=deps,
             ):
                 if not contribution:
                     continue
@@ -232,6 +235,7 @@ class OgcCorePlugin(Plugin):
             for dataquery in pm.hook.ogc_collection_dataqueries(
                 collection_id=collection_id,
                 ds=ds,
+                deps=deps,
             ):
                 if not dataquery:
                     continue

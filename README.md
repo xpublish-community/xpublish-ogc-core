@@ -35,8 +35,8 @@ Other OGC plugins implement these `hookspec`s (declared on `OgcPluginSpec`):
 
 - `ogc_router(deps)` — return an `APIRouter` mounted at the application root, for OGC routes like `/collections/{collection_id}/position`.
 - `ogc_conformance_classes()` — return a list of conformance class URIs (`http://www.opengis.net/spec/...`) to aggregate into `/conformance`.
-- `ogc_collection_metadata(collection_id, ds)` — return a dict of collection members (`extent`, `parameter_names`, `crs`, `output_formats`, ...) merged into the collection objects served at `/collections` and `/collections/{collection_id}`.
-- `ogc_collection_dataqueries(collection_id, ds)` — return a dict of [data query descriptions](https://docs.ogc.org/is/19-086r6/19-086r6.html#_df2c080b-949c-40c3-ad14-d20228270c2d) (`position`, `area`, `cube`, ...) merged into the collection's `data_queries`.
+- `ogc_collection_metadata(collection_id, ds, deps)` — return a dict of collection members (`extent`, `parameter_names`, `crs`, `output_formats`, ...) merged into the collection objects served at `/collections` and `/collections/{collection_id}`.
+- `ogc_collection_dataqueries(collection_id, ds, deps)` — return a dict of [data query descriptions](https://docs.ogc.org/is/19-086r6/19-086r6.html#_df2c080b-949c-40c3-ad14-d20228270c2d) (`position`, `area`, `cube`, ...) merged into the collection's `data_queries`.
 
 ## Schema-driven development
 
