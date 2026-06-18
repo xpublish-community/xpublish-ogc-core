@@ -16,7 +16,8 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
 ]
-dependencies = [ "pydantic>=2", "xpublish>=0.5" ]
+dependencies = [ "pydantic>=2", "xpublish>=0.5.2" ]
+urls.repository = "https://github.com/xpublish-community/xpublish-ogc-core"
 entry-points."xpublish.plugin".xpublish_ogc_core = "xpublish_ogc_core.plugin:OgcCorePlugin"
 
 [dependency-groups]

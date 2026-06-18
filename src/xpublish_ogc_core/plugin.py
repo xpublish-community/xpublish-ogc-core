@@ -1,14 +1,31 @@
+from collections.abc import Awaitable, Callable
 from enum import Enum
 from typing import Annotated, Any
 from urllib.parse import urljoin
 
 import xarray as xr
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.routing import APIRoute
+from starlette.responses import Response
 from xpublish import Dependencies, Plugin, hookimpl
 from xpublish import hookspec as hookspec
 
-from xpublish_ogc_core.models import Collections, ConfClasses, LandingPage, Link
+from xpublish_ogc_core.models import (
+    Collections,
+    ConfClasses,
+    LandingPage,
+    Link,
+    OGCException,
+)
+
+# Reusable `responses=` mapping documenting the OGC exception body that
+# OGCExceptionRoute returns for errors, so OpenAPI matches the real responses.
+OGC_EXCEPTION_RESPONSES: dict[int | str, dict[str, Any]] = {
+    404: {"model": OGCException, "description": "Not found"},
+    422: {"model": OGCException, "description": "Invalid request"},
+}
 
 OGC_API_COMMON_CONFORMANCE_CLASSES = [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
@@ -84,6 +101,44 @@ def ogc_exception(status_code: int, description: str) -> JSONResponse:
     )
 
 
+class OGCExceptionRoute(APIRoute):
+    """An ``APIRoute`` that renders errors as OGC exception objects.
+
+    OGC API responses (including error responses) are validated against the
+    official OGC schemas by the schemathesis fuzz tests and the CITE suites,
+    and those schemas require error bodies to be OGC exception objects (a
+    required ``code`` member; ``type`` for the RFC 7807 shape). FastAPI's
+    default handlers return ``{"detail": ...}`` for both request validation
+    errors and ``HTTPException``, which violates that schema.
+
+    Set ``route_class=OGCExceptionRoute`` on an ``APIRouter`` to convert both
+    through :func:`ogc_exception`, the same body ogc-core returns for its own
+    errors. ``include_router`` preserves each route's own class, so OGC plugins
+    must set this on the router they contribute via the ``ogc_router`` hook to
+    get the behaviour on their endpoints.
+    """
+
+    def get_route_handler(self) -> Callable[[Request], Awaitable[Response]]:
+        original_route_handler = super().get_route_handler()
+
+        async def ogc_exception_route_handler(request: Request) -> Response:
+            try:
+                return await original_route_handler(request)
+            except RequestValidationError as exc:
+                description = (
+                    "; ".join(
+                        f"{'.'.join(str(loc) for loc in error['loc'])}: {error['msg']}"
+                        for error in exc.errors()
+                    )
+                    or "Invalid request"
+                )
+                return ogc_exception(422, description)
+            except HTTPException as exc:
+                return ogc_exception(exc.status_code, str(exc.detail))
+
+        return ogc_exception_route_handler
+
+
 class OgcCorePlugin(Plugin):
     """OgcCorePlugin is a plugin that provides OGC Core functionality, and supports other OGC Xpublish plugins."""
 
@@ -102,7 +157,7 @@ class OgcCorePlugin(Plugin):
     def app_router(self, deps: Dependencies):
         """Register an application level router for OGC core endpoints, and mount additional OGC endpoints."""
 
-        router = APIRouter(tags=self.app_router_tags)
+        router = APIRouter(tags=self.app_router_tags, route_class=OGCExceptionRoute)
 
         for subrouter in deps.plugin_manager().hook.ogc_router(deps=deps):
             router.include_router(subrouter)
