@@ -39,6 +39,15 @@ OGC_REL_CONFORMANCE = "http://www.opengis.net/def/rel/ogc/1.0/conformance"
 OGC_REL_DATA = "http://www.opengis.net/def/rel/ogc/1.0/data"
 
 
+def _base_url(request: Request) -> str:
+    """Return the externally visible API root for direct, proxied, and mounted apps."""
+    base_url = str(request.base_url).rstrip("/")
+    root_path = request.scope.get("root_path", "")
+    app_root_path = request.scope.get("app_root_path", "")
+    mount_path = root_path.removeprefix(app_root_path).rstrip("/")
+    return f"{base_url}{mount_path}/"
+
+
 class OgcPluginSpec(Plugin):
     """A specification for OGC plugins."""
 
@@ -260,7 +269,7 @@ class OgcCorePlugin(Plugin):
             response_model_exclude_none=True,
         )
         def landing_page(request: Request) -> LandingPage:
-            base_url = str(request.base_url)
+            base_url = _base_url(request)
 
             return LandingPage(
                 title=self.title,
@@ -332,7 +341,7 @@ class OgcCorePlugin(Plugin):
             response_model_exclude_none=True,
         )
         def collections(request: Request) -> Collections:
-            base_url = str(request.base_url)
+            base_url = _base_url(request)
 
             return Collections(
                 links=[
@@ -362,6 +371,6 @@ class OgcCorePlugin(Plugin):
                     return ogc_exception(404, f"Collection {collection_id!r} does not exist")
                 raise
 
-            return build_collection(collection_id, ds, str(request.base_url))
+            return build_collection(collection_id, ds, _base_url(request))
 
         return router
