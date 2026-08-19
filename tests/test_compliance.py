@@ -9,6 +9,7 @@ implement those standards.
 
 import xpublish
 from conftest import FAKE_CONFORMANCE_CLASS, FakeOgcPlugin  # noqa: F401
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from xpublish_ogc_core.plugin import OGC_API_COMMON_CONFORMANCE_CLASSES, OgcCorePlugin
@@ -144,3 +145,34 @@ def test_ogc_router_hook_mounted(client):
 
     assert response.status_code == 200
     assert response.json() == {"collection_id": "air"}
+
+
+def test_links_respect_submount(rest):
+    app = FastAPI()
+    app.mount("/v1", rest.app)
+    client = TestClient(app)
+
+    landing = client.get("/v1/")
+    assert landing.status_code == 200
+    landing_links = {link["rel"]: link["href"] for link in landing.json()["links"]}
+    assert landing_links["self"] == "http://testserver/v1/"
+    assert landing_links["data"] == "http://testserver/v1/collections"
+    assert landing_links["service-desc"] == "http://testserver/v1/openapi.json"
+
+    collection = client.get("/v1/collections/air")
+    assert collection.status_code == 200
+    assert collection.json()["links"][0]["href"] == "http://testserver/v1/collections/air"
+    assert (
+        collection.json()["data_queries"]["position"]["link"]["href"]
+        == "http://testserver/v1/collections/air/fake"
+    )
+
+
+def test_links_respect_proxy_root_path(rest):
+    client = TestClient(rest.app, root_path="/proxy")
+
+    landing = client.get("/")
+    assert landing.status_code == 200
+    landing_links = {link["rel"]: link["href"] for link in landing.json()["links"]}
+    assert landing_links["self"] == "http://testserver/proxy/"
+    assert landing_links["data"] == "http://testserver/proxy/collections"
