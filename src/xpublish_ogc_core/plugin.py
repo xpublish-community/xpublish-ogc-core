@@ -47,7 +47,6 @@ class OgcPluginSpec(Plugin):
         self, deps: Dependencies
     ) -> Annotated[APIRouter, "An OGC specific router"]:
         """A hook specification for adding OGC specific routers."""
-        pass
 
     @hookspec
     def ogc_conformance_classes(self) -> Annotated[list[str], "Conformance class URIs"]:  # type: ignore[empty-body]
@@ -56,7 +55,6 @@ class OgcPluginSpec(Plugin):
         URIs follow the http://www.opengis.net/spec/... pattern and are aggregated
         into the `/conformance` endpoint.
         """
-        pass
 
     @hookspec
     def ogc_collection_metadata(  # type: ignore[empty-body]
@@ -71,7 +69,6 @@ class OgcPluginSpec(Plugin):
         crs, output_formats, ...) which are merged into the collection bodies
         served at `/collections` and `/collections/{collection_id}`.
         """
-        pass
 
     @hookspec
     def ogc_collection_dataqueries(  # type: ignore[empty-body]
@@ -81,7 +78,6 @@ class OgcPluginSpec(Plugin):
         deps: Dependencies,
     ) -> Annotated[dict[str, dict], "Data queries for a specific collection"]:
         """A hook specification for adding data queries to collection metadata."""
-        pass
 
 
 def ogc_exception(status_code: int, description: str) -> JSONResponse:
