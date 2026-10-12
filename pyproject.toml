@@ -14,6 +14,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
 ]
 dynamic = [ "version" ]
 dependencies = [ "pydantic>=2", "xpublish>=0.5.2" ]
@@ -75,11 +76,11 @@ enable_error_code = [ "ignore-without-code", "redundant-expr", "truthy-bool" ]
 strict = true
 
 [tool.pytest]
+addopts = [ "-ra" ]
 # filterwarnings = [
 #   "error",
 #   "ignore:numpy.ndarray size changed:RuntimeWarning",
 # ]
-addopts = [ "-ra" ]
 log_level = "INFO"
 markers = [
   "cite: official OGC CITE compliance suites run with TeamEngine in Docker (slow)",
