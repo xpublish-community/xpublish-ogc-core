@@ -23,7 +23,7 @@ entry-points."xpublish.plugin".xpublish_ogc_core = "xpublish_ogc_core.plugin:Ogc
 [dependency-groups]
 dev = [
   "cf-xarray",
-  "httpx2",
+  "httpx",
   "jsonschema",
   "netcdf4",
   "pooch",
