@@ -1,3 +1,4 @@
+import math
 from collections.abc import Awaitable, Callable
 from enum import Enum
 from typing import Annotated, Any
@@ -101,6 +102,34 @@ def ogc_exception(status_code: int, description: str) -> JSONResponse:
             "description": description,
         },
     )
+
+
+# OGC API - Common Part 2 / Tiles declare an optional bbox on GET /collections.
+# ogc-core validates it, so malformed values get a 400, but doesn't filter by it.
+BBOX_PARAMETER: dict[str, Any] = {
+    "name": "bbox",
+    "in": "query",
+    "description": "Four or six numbers. Validated, but collections are not filtered by it.",
+    "required": False,
+    "schema": {
+        "type": "array",
+        "oneOf": [{"minItems": 4, "maxItems": 4}, {"minItems": 6, "maxItems": 6}],
+        "items": {"type": "number", "format": "double"},
+    },
+    "style": "form",
+    "explode": False,
+}
+
+
+def _valid_bbox(bbox: str) -> bool:
+    """Whether a ``bbox`` query value is four or six comma separated finite numbers."""
+    parts = bbox.split(",")
+    if len(parts) not in (4, 6):
+        return False
+    try:
+        return all(math.isfinite(float(part)) for part in parts)
+    except ValueError:
+        return False
 
 
 class OGCExceptionRoute(APIRoute):
@@ -330,8 +359,16 @@ class OgcCorePlugin(Plugin):
             summary="The collections served by this server",
             response_model=Collections,
             response_model_exclude_none=True,
+            responses={400: {"model": OGCException, "description": "Invalid bbox"}},
+            openapi_extra={"parameters": [BBOX_PARAMETER]},
         )
-        def collections(request: Request) -> Collections:
+        def collections(request: Request) -> Collections | JSONResponse:
+            # Read bbox from the raw query so both the OGC form (bbox=1,2,3,4)
+            # and repeated parameters (bbox=1&bbox=2&...) parse.
+            bbox = request.query_params.getlist("bbox")
+            if bbox and not _valid_bbox(",".join(bbox)):
+                return ogc_exception(400, f"Invalid bbox {bbox!r}: expected 4 or 6 numbers")
+
             base_url = str(request.base_url)
 
             return Collections(

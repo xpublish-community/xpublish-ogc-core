@@ -7,6 +7,7 @@ standard-specific schemas (EDR, Tiles) lives in the plugin repos that
 implement those standards.
 """
 
+import pytest
 import xpublish
 from conftest import FAKE_CONFORMANCE_CLASS, FakeOgcPlugin  # noqa: F401
 from fastapi.testclient import TestClient
@@ -73,6 +74,21 @@ def test_collections(client):
 
     collection_ids = [collection["id"] for collection in data["collections"]]
     assert collection_ids == ["air"]
+
+
+@pytest.mark.parametrize("bbox", ["-180,-90,180,90", "0,0,0,1,1,1"])
+def test_collections_accepts_bbox(client, bbox):
+    response = client.get("/collections", params={"bbox": bbox})
+
+    assert response.status_code == 200
+
+
+@pytest.mark.parametrize("bbox", ["", "null", "1,2,3", "1,2,3,4,5", "a,b,c,d", "nan,0,1,1"])
+def test_collections_rejects_invalid_bbox(client, bbox):
+    response = client.get("/collections", params={"bbox": bbox})
+
+    assert response.status_code == 400
+    validate_response("exception", response.json(), document="common")
 
 
 def test_collection(client):
